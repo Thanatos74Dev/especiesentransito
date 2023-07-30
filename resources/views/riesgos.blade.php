@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Proveedores')
+@section('title', 'Niveles de riesgo')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,7 @@
     <div class="col-md-6">
         <br>
             <div class="card">
-                <div class="card-header text-white bg-dark mb-3">{{ __('Registro de proveedor') }}</div>
+                <div class="card-header text-white bg-dark mb-3">{{ __('Registro de nivel de riesgo') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -19,7 +19,7 @@
                     @endif
 
                     
-    <form action="registrar_proveedor" method="post">
+    <form action="registrar_riesgos" method="post">
     @csrf
     
     <div class="input-group mb-3">
@@ -27,25 +27,16 @@
         <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-user"></i></span>
         </div>
-        <input type="text" class="form-control" name="nombre" placeholder="Nombre completo" autofocus required>
+        <input type="text" class="form-control" name="nombre" placeholder="Nombre" autofocus required>
     </div>
     </div>
 
     <div class="input-group mb-3">
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-at"></i></span>
+            <span class="input-group-text"><i class="fas fa-comment"></i></span>
         </div>
-        <input type="email" class="form-control" name="correo" placeholder="Correo electrónico" required>
-    </div>
-    </div>
-
-    <div class="input-group mb-3">
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-phone"></i></span>
-        </div>
-        <input type="number" class="form-control" name="telefono" placeholder="Teléfono" required>
+        <textarea class="form-control" name="descripcion" cols="20" rows="3" placeholder="Descripción del riesgo" required></textarea>
     </div>
     </div>
 
@@ -55,23 +46,17 @@
     <button type="submit" class="btn btn-primary float-right">
         <span class="fas fa-plus"></span> Registrar</button>
     </div>
-
     </form>
-                         
-            </div>
-        </div>
-    </div>
 
-
-    <!-- MODAL EDICIÓN DE PROVEEDORES -->
-    <form action="actualizar_proveedor" method="post">
+    <!-- MODAL EDICIÓN DE RIESGOS -->
+    <form action="actualizar_riesgo" method="post">
     @csrf
 
     <div class="modal fade" id="edicion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="estadoLabel">Edición de proveedor</h5>
+            <h5 class="modal-title" id="estadoLabel">Edición de riesgo</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -90,7 +75,7 @@
                 </div>
 
             <div class="input-group mb-3">
-                Nombre proveedor: 
+                Nombre riesgo: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -100,24 +85,15 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    Correo electrónico: 
+                    Descripción riesgo: 
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-at"></i></span>
+                        <span class="input-group-text"><i class="fas fa-comment"></i></span>
                     </div>
-                    <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" required>
+                    <textarea class="form-control" id="descripcion" name="descripcion" cols="20" rows="3" placeholder="Descripción del riesgo" required></textarea>
                 </div>
                 </div>
 
-                <div class="input-group mb-3">
-                    Teléfono: 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    </div>
-                    <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required>
-                </div>
-                </div>
             </div>
 
         <div class="modal-footer">
@@ -132,8 +108,8 @@
     </div>
     </form>
 
-    <!-- MODAL HABILITACIÓN DE PROVEEDORES -->
-    <form action="habilitacion_proveedor" method="post">
+    <!-- MODAL HABILITACIÓN DE RIESGOS -->
+    <form action="habilitacion_riesgo" method="post">
     @csrf
 
     <div class="modal fade" id="habilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
@@ -158,7 +134,7 @@
                 </div>
 
             <div class="input-group mb-3">
-                Nombre proveedor: 
+                Nombre riesgo: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -168,12 +144,12 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    Estado proveedor: 
+                    Estado riesgo: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-eye"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="estado2" name="estado2" placeholder="Estado del proveedor" required>
+                    <input type="text" class="form-control" id="estado2" name="estado2" placeholder="Estado del riesgo" required>
                 </div>
                 </div>
             </div>
@@ -191,14 +167,14 @@
     </form>
 
     <!-- MODAL INHABILITACIÓN DE PROVEEDORES -->
-    <form action="inhabilitacion_proveedor" method="post">
+    <form action="inhabilitacion_riesgo" method="post">
     @csrf
 
     <div class="modal fade" id="inhabilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="estadoLabel">Estado del proveedor</h5>
+            <h5 class="modal-title" id="estadoLabel">Estado del riesgo</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -216,7 +192,7 @@
                 </div>
 
             <div class="input-group mb-3">
-                Nombre proveedor: 
+                Nombre riesgo: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -226,12 +202,12 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    Estado proveedor: 
+                    Estado riesgo: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-eye"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="estado3" name="estado3" placeholder="Estado del proveedor" required>
+                    <input type="text" class="form-control" id="estado3" name="estado3" placeholder="Estado del riesgo" required>
                 </div>
                 </div>
             </div>
@@ -247,11 +223,15 @@
     </div>
     </div>
     </form>
+                    
+            </div>
+        </div>
 
-    <div class="col-md-12">
+
+        <div class="col-md-12">
         <br>
             <div class="card">
-                <div class="card-header text-white bg-dark mb-3">{{ __('Listado de proveedores') }}</div>
+                <div class="card-header text-white bg-dark mb-3">{{ __('Listado de niveles de riesgos') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -262,46 +242,46 @@
 
         @csrf
 
-        <table class="table table-striped table-hover" id="proveedores" style='text-align: center; vertical-align: middle;'>
+        <table class="table table-striped table-hover" id="riesgos" style='text-align: center; vertical-align: middle;'>
             <thead align="center">
                 <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nombre</th>
-                <th scope="col" class="d-none d-sm-block">Correo</th>
+                <th scope="col" class="d-none d-sm-block">Descripción</th>
                 <th scope="col" colspan='2'>Acciones</th>
-                <th scope="col">Última mod</th>
+                <th scope="col" class="d-none d-md-block">Última mod</th>
                 </tr>
             </thead>
            
             <tbody>
             @foreach($data as $d)
                 <tr>
-                    <td>{{ $d->pro_id }}</td>
-                    <td>{{ $d->pro_nombre }}</td>
-                    <td class="d-none d-sm-block">{{ $d->pro_correo }}</td>
+                    <td style="vertical-align: middle;">{{ $d->riesgo_id }}</td>
+                    <td style="vertical-align: middle;">{{ $d->riesgo_nombre }}</td>
+                    <td align="justify" class="d-none d-sm-block">{{ $d->riesgo_descripcion }}</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Editar" id="editar"
-                        data-id="{{ $d->pro_id }}" data-nombre="{{ $d->pro_nombre }}" data-correo="{{ $d->pro_correo }}" data-telefono="{{ $d->pro_telefono }}">
+                        data-id="{{ $d->riesgo_id }}" data-nombre="{{ $d->riesgo_nombre }}" data-descripcion="{{ $d->riesgo_descripcion }}">
                             <span class="fas fa-edit"></span>
                         </button>
                     </td>
-                    @if ($d->pro_estado === 1)
+                    @if ($d->riesgo_estado === 1)
                     <td>
                         <button type="button" class="btn btn-primary bg-red" data-toggle="modal" data-target="#inhabilitacion" title="Inhabilitar" id="inhabilitar"
-                        data-id3="{{ $d->pro_id }}" data-nombre3="{{ $d->pro_nombre }}" data-estado3="El usuario se encuentra habilitado">
+                        data-id3="{{ $d->riesgo_id }}" data-nombre3="{{ $d->riesgo_nombre }}" data-estado3="El riesgo se encuentra habilitado">
                             <span class="fas fa-thumbs-down"></span>
                         </button>
                     </td>
                     @else
                     <td>
                         <button type="button" class="btn btn-primary bg-green" data-toggle="modal" data-target="#habilitacion" title="Habilitar" id="habilitar"
-                        data-id2="{{ $d->pro_id }}" data-nombre2="{{ $d->pro_nombre }}" data-estado2="El usuario se encuentra inhabilitado">
+                        data-id2="{{ $d->riesgo_id }}" data-nombre2="{{ $d->riesgo_nombre }}" data-estado2="El riesgo se encuentra inhabilitado">
                             <span class="fas fa-thumbs-up"></span>
                         </button>
                     </td>
                     @endif
-                   
-                    <td >{{ $d->pro_fecha_registro }}</td>
+
+                    <td style="vertical-align: middle;" class="d-none d-md-block">{{ $d->riesgo_fecha_registro }}</td>
                 </tr>
             @endforeach
              </tbody>
@@ -311,18 +291,17 @@
             </div>
         </div>
     </div>
+    </div>
 </div>
 @endsection
 
-
 @section('js')
-
     <script>
-        $('#proveedores').DataTable({
+        $('#riesgos').DataTable({
             responsive: true,
             autoWidth: false,
 
-        "language": {   
+        "language": {
             "lengthMenu": "Mostrar _MENU_ registros de página",
             "zeroRecords": "No se han encontrado registros",
             "info": "Mostrando página _PAGE_ de _PAGES_",
@@ -339,13 +318,11 @@
         $(document).on("click", "#editar", function() {
             var id = $(this).data('id');
             var nombre = $(this).data('nombre');
-            var correo = $(this).data('correo');
-            var telefono = $(this).data('telefono');
+            var descripcion = $(this).data('descripcion');
 
             $("#id").val(id);
             $("#nombre").val(nombre);
-            $("#correo").val(correo);
-            $("#telefono").val(telefono);
+            $("#descripcion").val(descripcion);
         });
 
         $(document).on("click", "#habilitar", function() {

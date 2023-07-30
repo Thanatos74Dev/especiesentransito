@@ -53,31 +53,49 @@ Route::post('actualizar_usuario_especifico', [UsersController::class, 'actualiza
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO RIESGOS 06/06/2023
 Route::get('/riesgos', [RiesgoController::class, 'riesgos'])->name('riesgos');
 Route::post('/registrar_riesgos', [RiesgoController::class, 'registrar_riesgos'])->name('registrar_riesgos');
+Route::post('/actualizar_riesgo', [RiesgoController::class, 'actualizar_riesgo'])->name('actualizar_riesgo');
+Route::post('/habilitacion_riesgo', [RiesgoController::class, 'habilitacion_riesgo'])->name('habilitacion_riesgo');
+Route::post('/inhabilitacion_riesgo', [RiesgoController::class, 'inhabilitacion_riesgo'])->name('inhabilitacion_riesgo');
 
 
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO TIPO MANTENIMIENTOS 06/06/2023
 Route::get('/tipo_mantenimientos', [TiposMantenimientoController::class, 'tipo_mantenimientos'])->name('tipo_mantenimientos');
 Route::post('/registrar_tipos_mantenimientos', [TiposMantenimientoController::class, 'registrar_tipos_mantenimientos'])->name('registrar_tipos_mantenimientos');
+Route::post('/actualizar_tipo_mantenimiento', [TiposMantenimientoController::class, 'actualizar_tipo_mantenimiento'])->name('actualizar_tipo_mantenimiento');
+Route::post('/habilitacion_tipo_mantenimiento', [TiposMantenimientoController::class, 'habilitacion_tipo_mantenimiento'])->name('habilitacion_tipo_mantenimiento');
+Route::post('/inhabilitacion_tipo_mantenimiento', [TiposMantenimientoController::class, 'inhabilitacion_tipo_mantenimiento'])->name('inhabilitacion_tipo_mantenimiento');
 
 
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO PERIODICIDAD 06/06/2023
 Route::get('/periodicidad', [PeriodicidadController::class, 'periodicidad'])->name('periodicidad');
 Route::post('registrar_periodicidad', [PeriodicidadController::class, 'registrar_periodicidad'])->name('registrar_periodicidad');
+Route::post('/actualizar_periodicidad', [PeriodicidadController::class, 'actualizar_periodicidad'])->name('actualizar_periodicidad');
+Route::post('/habilitacion_periodicidad', [PeriodicidadController::class, 'habilitacion_periodicidad'])->name('habilitacion_periodicidad');
+Route::post('/inhabilitacion_periodicidad', [PeriodicidadController::class, 'inhabilitacion_periodicidad'])->name('inhabilitacion_periodicidad');
 
 
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO ESPECIALIDADES 06/06/2023
 Route::get('/especialidades', [EspecialidadController::class, 'especialidades'])->name('especialidades');
 Route::post('/registrar_especialidades', [EspecialidadController::class, 'registrar_especialidades'])->name('registrar_especialidades');
+Route::post('/actualizar_especialidad', [EspecialidadController::class, 'actualizar_especialidad'])->name('actualizar_especialidad');
+Route::post('/habilitacion_especialidad', [EspecialidadController::class, 'habilitacion_especialidad'])->name('habilitacion_especialidad');
+Route::post('/inhabilitacion_especialidad', [EspecialidadController::class, 'inhabilitacion_especialidad'])->name('inhabilitacion_especialidad');
 
 
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO FABRICANTES 06/06/2023
 Route::get('/fabricantes', [FabricanteController::class, 'fabricantes'])->name('fabricantes');
 Route::post('/registrar_fabricantes', [FabricanteController::class, 'registrar_fabricantes'])->name('registrar_fabricantes');
+Route::post('/actualizar_fabricante', [FabricanteController::class, 'actualizar_fabricante'])->name('actualizar_fabricante');
+Route::post('/habilitacion_fabricante', [FabricanteController::class, 'habilitacion_fabricante'])->name('habilitacion_fabricante');
+Route::post('/inhabilitacion_fabricante', [FabricanteController::class, 'inhabilitacion_fabricante'])->name('inhabilitacion_fabricante');
 
 
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO PROVEEDORES 13/06/2023
 Route::get('/proveedores', [ProveedorController::class, 'proveedores'])->name('proveedores');
 Route::post('/registrar_proveedor', [ProveedorController::class, 'registrar_proveedor'])->name('registrar_proveedor');
+Route::post('/actualizar_proveedor', [ProveedorController::class, 'actualizar_proveedor'])->name('actualizar_proveedor');
+Route::post('/habilitacion_proveedor', [ProveedorController::class, 'habilitacion_proveedor'])->name('habilitacion_proveedor');
+Route::post('/inhabilitacion_proveedor', [ProveedorController::class, 'inhabilitacion_proveedor'])->name('inhabilitacion_proveedor');
 
 
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO EQUIPOS 12/04/2023

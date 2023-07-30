@@ -26,6 +26,7 @@ class EspecialidadController extends Controller
         DB::table('especialidades')
         ->insert(['esp_nombre' => $datos['nombre'],
                 'esp_descripcion' => $datos['descripcion'],
+                'esp_estado' => 1,
                 'esp_fecha_registro' => $hoy]);
             
         return redirect('especialidades');
@@ -51,24 +52,43 @@ class EspecialidadController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function actualizar_especialidad()    {
+        $hoy = date("Y-m-d");
+
+        $datos = request()->except('_token');
+        DB::table('especialidades')
+            ->where('esp_id', '=', $datos['id'])
+            ->update(['esp_nombre' => $datos['nombre'],
+                'esp_descripcion' => $datos['descripcion']
+            ]);
+            
+        return redirect('especialidades');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    //MÉTODO PARA LA FUNCIONALIDAD DE INHABILITACIÓN DE PROVEEDORES 29/07/2023
+    public function inhabilitacion_especialidad()
     {
-        //
+        $datos = request()->except('_token');
+        DB::table('especialidades')
+        ->where('esp_id', '=', $datos['id3'])
+        ->update([
+            'esp_estado' => 2
+        ]);
+
+        return redirect('especialidades');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+     //MÉTODO PARA LA FUNCIONALIDAD DE HABILITACIÓN DE PROVEEDORES 29/07/2023
+     public function habilitacion_especialidad()
+     {
+        $datos = request()->except('_token');
+        DB::table('especialidades')
+        ->where('esp_id', '=', $datos['id2'])
+        ->update([
+            'esp_estado' => 1
+        ]);
+ 
+         return redirect('especialidades');
+     }
+
 }

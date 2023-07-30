@@ -26,9 +26,10 @@ class RiesgoController extends Controller
         DB::table('riesgos')
         ->insert(['riesgo_nombre' => $datos['nombre'],
                 'riesgo_descripcion' => $datos['descripcion'],
+                'riesgo_estado' => 1,
                 'riesgo_fecha_registro' => $hoy]);
             
-        return redirect('riesgo');
+        return redirect('riesgos');
     }
 
     /**
@@ -37,7 +38,7 @@ class RiesgoController extends Controller
     public function riesgos(Request $request)
     {
         $data = DB::table('riesgos')->get();
-        return view('riesgo', ['data' => $data]);
+        return view('riesgos', ['data' => $data]);
     }
 
     /**
@@ -51,24 +52,42 @@ class RiesgoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function actualizar_riesgo()    {
+        $hoy = date("Y-m-d");
+
+        $datos = request()->except('_token');
+        DB::table('riesgos')
+            ->where('riesgo_id', '=', $datos['id'])
+            ->update(['riesgo_nombre' => $datos['nombre'],
+                'riesgo_Descripcion' => $datos['descripcion']
+            ]);
+            
+        return redirect('riesgos');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    //MÉTODO PARA LA FUNCIONALIDAD DE INHABILITACIÓN DE PROVEEDORES 29/07/2023
+    public function inhabilitacion_riesgo()
     {
-        //
+        $datos = request()->except('_token');
+        DB::table('riesgos')
+        ->where('riesgo_id', '=', $datos['id3'])
+        ->update([
+            'riesgo_estado' => 2
+        ]);
+
+        return redirect('riesgos');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+     //MÉTODO PARA LA FUNCIONALIDAD DE HABILITACIÓN DE PROVEEDORES 29/07/2023
+     public function habilitacion_riesgo()
+     {
+        $datos = request()->except('_token');
+        DB::table('riesgos')
+        ->where('riesgo_id', '=', $datos['id2'])
+        ->update([
+            'riesgo_estado' => 1
+        ]);
+ 
+         return redirect('riesgos');
+     }
 }

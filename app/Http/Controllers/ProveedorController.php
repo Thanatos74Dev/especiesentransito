@@ -27,6 +27,7 @@ class ProveedorController extends Controller
         ->insert(['pro_nombre' => $datos['nombre'],
                 'pro_correo' => $datos['correo'],
                 'pro_telefono' => $datos['telefono'],
+                'pro_estado' => 1,
                 'pro_fecha_registro' => $hoy]);
             
         return redirect('proveedores');
@@ -60,16 +61,44 @@ class ProveedorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function actualizar_proveedor()    {
+        $hoy = date("Y-m-d");
+
+        $datos = request()->except('_token');
+        DB::table('proveedores')
+            ->where('pro_id', '=', $datos['id'])
+            ->update(['pro_nombre' => $datos['nombre'],
+                'pro_correo' => $datos['correo'],
+                'pro_telefono' => $datos['telefono']
+            ]);
+            
+        return redirect('proveedores');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    //MÉTODO PARA LA FUNCIONALIDAD DE INHABILITACIÓN DE PROVEEDORES 29/07/2023
+    public function inhabilitacion_proveedor()
     {
-        //
+        $datos = request()->except('_token');
+        DB::table('proveedores')
+        ->where('pro_id', '=', $datos['id3'])
+        ->update([
+            'pro_estado' => 2
+        ]);
+
+        return redirect('proveedores');
     }
+
+     //MÉTODO PARA LA FUNCIONALIDAD DE HABILITACIÓN DE PROVEEDORES 29/07/2023
+     public function habilitacion_proveedor()
+     {
+        $datos = request()->except('_token');
+        DB::table('proveedores')
+        ->where('pro_id', '=', $datos['id2'])
+        ->update([
+            'pro_estado' => 1
+        ]);
+ 
+         return redirect('proveedores');
+     }
+
 }

@@ -26,6 +26,7 @@ class FabricanteController extends Controller
         DB::table('fabricantes')
         ->insert(['fab_nombre' => $datos['nombre'],
                 'fab_url' => $datos['url'],
+                'fab_estado' => 1,
                 'fab_fecha_registro' => $hoy]);
             
         return redirect('fabricantes');
@@ -51,24 +52,42 @@ class FabricanteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function actualizar_fabricante(){
+        $hoy = date("Y-m-d");
+
+        $datos = request()->except('_token');
+        DB::table('fabricantes')
+            ->where('fab_id', '=', $datos['id'])
+            ->update(['fab_nombre' => $datos['nombre'],
+                'fab_url' => $datos['url'],
+            ]);
+            
+        return redirect('fabricantes');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+  //MÉTODO PARA LA FUNCIONALIDAD DE INHABILITACIÓN DE PROVEEDORES 29/07/2023
+  public function INhabilitacion_fabricante()
+  {
+      $datos = request()->except('_token');
+      DB::table('fabricantes')
+      ->where('fab_id', '=', $datos['id3'])
+      ->update([
+          'fab_estado' => 2
+      ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+      return redirect('fabricantes');
+  }
+
+   //MÉTODO PARA LA FUNCIONALIDAD DE HABILITACIÓN DE PROVEEDORES 29/07/2023
+   public function habilitacion_fabricante()
+   {
+      $datos = request()->except('_token');
+      DB::table('fabricantes')
+      ->where('fab_id', '=', $datos['id2'])
+      ->update([
+          'fab_estado' => 1
+      ]);
+
+       return redirect('fabricantes');
+   }
 }

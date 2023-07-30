@@ -26,6 +26,7 @@ class PeriodicidadController extends Controller
         DB::table('periodicidad')
         ->insert(['per_nombre' => $datos['nombre'],
                 'per_descripcion' => $datos['descripcion'],
+                'per_estado' => 1,
                 'per_fecha_registro' => $hoy]);
             
         return redirect('periodicidad');
@@ -51,24 +52,42 @@ class PeriodicidadController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function actualizar_periodicidad()    {
+        $hoy = date("Y-m-d");
+
+        $datos = request()->except('_token');
+        DB::table('periodicidad')
+            ->where('per_id', '=', $datos['id'])
+            ->update(['per_nombre' => $datos['nombre'],
+                'per_descripcion' => $datos['descripcion']
+            ]);
+            
+        return redirect('periodicidad');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    //MÉTODO PARA LA FUNCIONALIDAD DE INHABILITACIÓN DE PERIODICIDAD 29/07/2023
+    public function inhabilitacion_periodicidad()
     {
-        //
+        $datos = request()->except('_token');
+        DB::table('periodicidad')
+        ->where('per_id', '=', $datos['id3'])
+        ->update([
+            'per_estado' => 2
+        ]);
+
+        return redirect('periodicidad');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+     //MÉTODO PARA LA FUNCIONALIDAD DE HABILITACIÓN DE PERIODICIDAD 29/07/2023
+     public function habilitacion_periodicidad()
+     {
+        $datos = request()->except('_token');
+        DB::table('periodicidad')
+        ->where('per_id', '=', $datos['id2'])
+        ->update([
+            'per_estado' => 1
+        ]);
+ 
+         return redirect('periodicidad');
+     }
 }

@@ -49,6 +49,357 @@
 
     </form>
 
+    <!-- MODAL EDICIÓN DE TIPOS DE MANTENIMIENTOS -->
+    <form action="actualizar_tipo_mantenimiento" method="post">
+    @csrf
+
+    <div class="modal fade" id="edicion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="estadoLabel">Edición de tipo de mantenimiento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+       
+        <div class="input-group mb-3">
+            Id:
+                <div class="input-group">
+               
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="id" name="id" required readonly>
+                </div>
+                </div>
+
+            <div class="input-group mb-3">
+                Nombre tipo de mantenimiento: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" autofocus required>
+                </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    Descripción tipo de mantenimiento: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-comment"></i></span>
+                    </div>
+                    <textarea class="form-control" id="descripcion" name="descripcion" cols="20" rows="3" placeholder="Descripción del mantenimiento" required></textarea>
+                </div>
+                </div>
+            </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">
+            <span class="fas fa-recycle"></span>
+                {{ 'Actualizar' }}
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    </form>
+
+    <!-- MODAL HABILITACIÓN DE PROVEEDORES -->
+    <form action="habilitacion_tipo_mantenimiento" method="post">
+    @csrf
+
+    <div class="modal fade" id="habilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="estadoLabel">Estado del proveedor</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+       
+        <div class="input-group mb-3">
+                Id: 
+                <div class="input-group">        
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="id2" name="id2" required readonly>
+                </div>
+                </div>
+
+            <div class="input-group mb-3">
+                Nombre tipo de mantenimiento: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="nombre2" name="nombre2" placeholder="Nombre completo" autofocus required>
+                </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    Estado tipo de mantenimiento: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-eye"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="estado2" name="estado2" placeholder="Estado del tipo de mantenimiento" required>
+                </div>
+                </div>
+            </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary bg-green">
+            <span class="fas fa-thumbs-up"></span>
+                {{ 'Habilitar' }}
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    </form>
+
+    <!-- MODAL INHABILITACIÓN DE PROVEEDORES -->
+    <form action="inhabilitacion_tipo_mantenimiento" method="post">
+    @csrf
+
+    <div class="modal fade" id="inhabilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="estadoLabel">Estado del tipo de mantenimiento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+       
+        <div class="input-group mb-3">
+            Id: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="id3" name="id3" required readonly>
+                </div>
+                </div>
+
+            <div class="input-group mb-3">
+                Nombre tipo de mantenimiento: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="nombre3" name="nombre3" placeholder="Nombre completo" autofocus required>
+                </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    Estado tipo de mantenimiento: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-eye"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="estado3" name="estado3" placeholder="Estado del tipo de mantenimiento" required>
+                </div>
+                </div>
+            </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary bg-red">
+            <span class="fas fa-thumbs-down"></span>
+                {{ 'Inhabilitar' }}
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    </form>
+
+    
+    <!-- MODAL EDICIÓN DE TIPOS DE MANTENIMIENTO -->
+    <form action="actualizar_tipo_mantenimiento" method="post">
+    @csrf
+
+    <div class="modal fade" id="edicion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="estadoLabel">Edición de tipos de mantenimiento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+       
+        <div class="input-group mb-3">
+            Id:
+                <div class="input-group">
+               
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="id" name="id" required readonly>
+                </div>
+                </div>
+
+            <div class="input-group mb-3">
+                Nombre tipo mantenimiento: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" autofocus required>
+                </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    Descripción tipo mantenimiento: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-at"></i></span>
+                    </div>
+                    <input type="email" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción tipo mantenimiento" required>
+                </div>
+                </div>
+            </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">
+            <span class="fas fa-recycle"></span>
+                {{ 'Actualizar' }}
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    </form>
+
+    <!-- MODAL HABILITACIÓN DE TIPOS DE MANTENIMIENTOS -->
+    <form action="habilitacion_tipo_mantenimiento" method="post">
+    @csrf
+
+    <div class="modal fade" id="habilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="estadoLabel">Estado del tipo de mantenimiento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+       
+        <div class="input-group mb-3">
+                Id: 
+                <div class="input-group">        
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="id2" name="id2" required readonly>
+                </div>
+                </div>
+
+            <div class="input-group mb-3">
+                Nombre tipo mantenimiento: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="nombre2" name="nombre2" placeholder="Nombre completo" autofocus required>
+                </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    Estado tipo mantenimiento: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-eye"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="estado2" name="estado2" placeholder="Estado del tipo demantenimiento" required>
+                </div>
+                </div>
+            </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary bg-green">
+            <span class="fas fa-thumbs-up"></span>
+                {{ 'Habilitar' }}
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    </form>
+
+    <!-- MODAL INHABILITACIÓN DE TIPOS DE MANTENIMIENTOS -->
+    <form action="INhabilitacion_tipo_mantenimiento" method="post">
+    @csrf
+
+    <div class="modal fade" id="inhabilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="estadoLabel">Estado del tipo mantenimiento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+       
+        <div class="input-group mb-3">
+            Id: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="id3" name="id3" required readonly>
+                </div>
+                </div>
+
+            <div class="input-group mb-3">
+                Nombre tipo mantenimiento: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="nombre3" name="nombre3" placeholder="Nombre completo" autofocus required>
+                </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    Estado tipo mantenimiento: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-eye"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="estado3" name="estado3" placeholder="Estado del tipo mantenimiento" required>
+                </div>
+                </div>
+            </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary bg-red">
+            <span class="fas fa-thumbs-down"></span>
+                {{ 'Inhabilitar' }}
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    </form>
+
             </div>
         </div>
 
@@ -83,20 +434,28 @@
                     <td style="vertical-align: middle;">{{ $d->tipo_man_id }}</td>
                     <td style="vertical-align: middle;">{{ $d->tipo_man_nombre }}</td>
                     <td align="justify" class="d-none d-sm-block">{{ $d->tipo_man_descripcion }}</td>
-                    <td style="vertical-align: middle;">
-                        <form action="" method="get">
-                            <button name='editar' class="btn btn-block btn-primary" title="Editar">
-                            <span class="fas fa-edit"></span>    
-                            </button>
-                        </form>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Editar" id="editar"
+                        data-id="{{ $d->tipo_man_id }}" data-nombre="{{ $d->tipo_man_nombre }}" data-descripcion="{{ $d->tipo_man_descripcion }}">
+                            <span class="fas fa-edit"></span>
+                        </button>
                     </td>
-                    <td style="vertical-align: middle;">
-                        <form action="" method="get">
-                            <button type=submit class="btn btn-block btn-primary bg-red" title="Inhabilitar">
+                    @if ($d->tipo_man_estado === 1)
+                    <td>
+                        <button type="button" class="btn btn-primary bg-red" data-toggle="modal" data-target="#inhabilitacion" title="Inhabilitar" id="inhabilitar"
+                        data-id3="{{ $d->tipo_man_id }}" data-nombre3="{{ $d->tipo_man_nombre }}" data-estado3="El tipo de mantenimiento se encuentra habilitado">
                             <span class="fas fa-thumbs-down"></span>
-                            </button>
-                        </form>
+                        </button>
                     </td>
+                    @else
+                    <td>
+                        <button type="button" class="btn btn-primary bg-green" data-toggle="modal" data-target="#habilitacion" title="Habilitar" id="habilitar"
+                        data-id2="{{ $d->tipo_man_id }}" data-nombre2="{{ $d->tipo_man_nombre }}" data-estado2="El tipo de mantenimiento se encuentra inhabilitado">
+                            <span class="fas fa-thumbs-up"></span>
+                        </button>
+                    </td>
+                    @endif
+                   
                     <td style="vertical-align: middle;" class="d-none d-md-block">{{ $d->tipo_man_fecha_registro }}</td>
                 </tr>
             @endforeach
@@ -130,6 +489,37 @@
                 "previous": "Anterior"
             }
         }
-        });  
+        });
+
+        $(document).on("click", "#editar", function() {
+            var id = $(this).data('id');
+            var nombre = $(this).data('nombre');
+            var descripcion = $(this).data('descripcion');
+
+            $("#id").val(id);
+            $("#nombre").val(nombre);
+            $("#descripcion").val(descripcion);
+        });
+
+        $(document).on("click", "#habilitar", function() {
+            var id2 = $(this).data('id2');
+            var nombre2 = $(this).data('nombre2');
+            var estado2 = $(this).data('estado2');
+
+            $("#id2").val(id2);
+            $("#nombre2").val(nombre2);
+            $("#estado2").val(estado2);
+        });
+
+        $(document).on("click", "#inhabilitar", function() {
+            var id3 = $(this).data('id3');
+            var nombre3 = $(this).data('nombre3');
+            var estado3 = $(this).data('estado3');
+
+            $("#id3").val(id3);
+            $("#nombre3").val(nombre3);
+            $("#estado3").val(estado3);
+        });
+
     </script>
 @endsection

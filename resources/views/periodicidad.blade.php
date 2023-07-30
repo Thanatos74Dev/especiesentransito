@@ -49,6 +49,182 @@
     </div>
 
     </form>
+
+    <!-- MODAL EDICIÓN DE PERIODICIDAD -->
+    <form action="actualizar_periodicidad" method="post">
+    @csrf
+
+    <div class="modal fade" id="edicion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="estadoLabel">Edición de periodicidad</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+       
+        <div class="input-group mb-3">
+            Id:
+                <div class="input-group">
+               
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="id" name="id" required readonly>
+                </div>
+                </div>
+
+            <div class="input-group mb-3">
+                Nombre periodicidad: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" autofocus required>
+                </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    Descripción periodicidad: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-comment"></i></span>
+                    </div>
+                    <textarea class="form-control" id="descripcion" name="descripcion" cols="20" rows="3" placeholder="Descripción de la periodicidad" required></textarea>
+                </div>
+                </div>
+
+            </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">
+            <span class="fas fa-recycle"></span>
+                {{ 'Actualizar' }}
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    </form>
+
+    <!-- MODAL HABILITACIÓN DE PERIODICIDAD -->
+    <form action="habilitacion_periodicidad" method="post">
+    @csrf
+
+    <div class="modal fade" id="habilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="estadoLabel">Estado de la periodicidad</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+       
+        <div class="input-group mb-3">
+                Id: 
+                <div class="input-group">        
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="id2" name="id2" required readonly>
+                </div>
+                </div>
+
+            <div class="input-group mb-3">
+                Nombre periodicidad: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="nombre2" name="nombre2" placeholder="Nombre completo" autofocus required>
+                </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    Estado periodicidad: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-eye"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="estado2" name="estado2" placeholder="Estado de la periodicidad" required>
+                </div>
+                </div>
+            </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary bg-green">
+            <span class="fas fa-thumbs-up"></span>
+                {{ 'Habilitar' }}
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    </form>
+
+    <!-- MODAL INHABILITACIÓN DE PERIODICIDAD -->
+    <form action="inhabilitacion_periodicidad" method="post">
+    @csrf
+
+    <div class="modal fade" id="inhabilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="estadoLabel">Estado de la periodicidad</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+       
+        <div class="input-group mb-3">
+            Id: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="id3" name="id3" required readonly>
+                </div>
+                </div>
+
+            <div class="input-group mb-3">
+                Nombre proveedor: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="nombre3" name="nombre3" placeholder="Nombre completo" autofocus required>
+                </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    Estado proveedor: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-eye"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="estado3" name="estado3" placeholder="Estado de la periodicidad" required>
+                </div>
+                </div>
+            </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary bg-red">
+            <span class="fas fa-thumbs-down"></span>
+                {{ 'Inhabilitar' }}
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    </form>
                     
             </div>
         </div>
@@ -84,20 +260,28 @@
                     <td style="vertical-align: middle;">{{ $d->per_id }}</td>
                     <td style="vertical-align: middle;">{{ $d->per_nombre }}</td>
                     <td align="justify" class="d-none d-sm-block">{{ $d->per_descripcion }}</td>
-                    <td style="vertical-align: middle;">
-                        <form action="" method="get">
-                            <button name='editar' class="btn btn-block btn-primary" title="Editar">
-                            <span class="fas fa-edit"></span>    
-                            </button>
-                        </form>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Editar" id="editar"
+                        data-id="{{ $d->per_id }}" data-nombre="{{ $d->per_nombre }}" data-descripcion="{{ $d->per_descripcion }}">
+                            <span class="fas fa-edit"></span>
+                        </button>
                     </td>
-                    <td style="vertical-align: middle;">
-                        <form action="" method="get">
-                            <button type=submit class="btn btn-block btn-primary bg-red" title="Inhabilitar">
+                    @if ($d->per_estado === 1)
+                    <td>
+                        <button type="button" class="btn btn-primary bg-red" data-toggle="modal" data-target="#inhabilitacion" title="Inhabilitar" id="inhabilitar"
+                        data-id3="{{ $d->per_id }}" data-nombre3="{{ $d->per_nombre }}" data-estado3="La periodicidad se encuentra habilitada">
                             <span class="fas fa-thumbs-down"></span>
-                            </button>
-                        </form>
+                        </button>
                     </td>
+                    @else
+                    <td>
+                        <button type="button" class="btn btn-primary bg-green" data-toggle="modal" data-target="#habilitacion" title="Habilitar" id="habilitar"
+                        data-id2="{{ $d->per_id }}" data-nombre2="{{ $d->per_nombre }}" data-estado2="La periodicidad se encuentra inhabilitada">
+                            <span class="fas fa-thumbs-up"></span>
+                        </button>
+                    </td>
+                    @endif
+
                     <td style="vertical-align: middle;" class="d-none d-md-block">{{ $d->per_fecha_registro }}</td>
                 </tr>
             @endforeach
@@ -131,6 +315,36 @@
                 "previous": "Anterior"
             }
         }
-        });  
+        });
+
+        $(document).on("click", "#editar", function() {
+            var id = $(this).data('id');
+            var nombre = $(this).data('nombre');
+            var descripcion = $(this).data('descripcion');
+
+            $("#id").val(id);
+            $("#nombre").val(nombre);
+            $("#descripcion").val(descripcion);
+        });
+
+        $(document).on("click", "#habilitar", function() {
+            var id2 = $(this).data('id2');
+            var nombre2 = $(this).data('nombre2');
+            var estado2 = $(this).data('estado2');
+
+            $("#id2").val(id2);
+            $("#nombre2").val(nombre2);
+            $("#estado2").val(estado2);
+        });
+
+        $(document).on("click", "#inhabilitar", function() {
+            var id3 = $(this).data('id3');
+            var nombre3 = $(this).data('nombre3');
+            var estado3 = $(this).data('estado3');
+
+            $("#id3").val(id3);
+            $("#nombre3").val(nombre3);
+            $("#estado3").val(estado3);
+        });
     </script>
 @endsection

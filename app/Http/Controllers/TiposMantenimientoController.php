@@ -26,6 +26,7 @@ class TiposMantenimientoController extends Controller
         DB::table('tipos_mantenimientos')
         ->insert(['tipo_man_nombre' => $datos['nombre'],
                 'tipo_man_descripcion' => $datos['descripcion'],
+                'tipo_man_estado' => 1,
                 'tipo_man_fecha_registro' => $hoy]);
             
         return redirect('tipo_mantenimientos');
@@ -51,24 +52,43 @@ class TiposMantenimientoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function actualizar_tipo_mantenimiento()    {
+        $hoy = date("Y-m-d");
+
+        $datos = request()->except('_token');
+        DB::table('tipos_mantenimientos')
+            ->where('tipo_man_id', '=', $datos['id'])
+            ->update(['tipo_man_nombre' => $datos['nombre'],
+                'tipo_man_descripcion' => $datos['descripcion']
+            ]);
+            
+        return redirect('tipo_mantenimientos');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    //MÉTODO PARA LA FUNCIONALIDAD DE INHABILITACIÓN DE PROVEEDORES 29/07/2023
+    public function inhabilitacion_tipo_mantenimiento()
     {
-        //
+        $datos = request()->except('_token');
+        DB::table('tipos_mantenimientos')
+        ->where('tipo_man_id', '=', $datos['id3'])
+        ->update([
+            'tipo_man_estado' => 2
+        ]);
+
+        return redirect('tipo_mantenimientos');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+     //MÉTODO PARA LA FUNCIONALIDAD DE HABILITACIÓN DE PROVEEDORES 29/07/2023
+     public function habilitacion_tipo_mantenimiento()
+     {
+        $datos = request()->except('_token');
+        DB::table('tipos_mantenimientos')
+        ->where('tipo_man_id', '=', $datos['id2'])
+        ->update([
+            'tipo_man_estado' => 1
+        ]);
+ 
+         return redirect('tipo_mantenimientos');
+     }
+     
 }
