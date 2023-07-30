@@ -51,24 +51,42 @@ class AreaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function actualizar_area()    {
+        $hoy = date("Y-m-d");
+
+        $datos = request()->except('_token');
+        DB::table('areas')
+            ->where('area_id', '=', $datos['id'])
+            ->update(['area_nombre' => $datos['nombre'],
+                'area_notas' => $datos['notas']
+            ]);
+            
+        return redirect('areas');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    //MÉTODO PARA LA FUNCIONALIDAD DE INHABILITACIÓN DE ÁREAS 29/07/2023
+    public function inhabilitacion_area()
     {
-        //
+        $datos = request()->except('_token');
+        DB::table('areas')
+        ->where('area_id', '=', $datos['id3'])
+        ->update([
+            'area_estado' => 2
+        ]);
+
+        return redirect('areas');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+     //MÉTODO PARA LA FUNCIONALIDAD DE HABILITACIÓN DE ÁREAS 29/07/2023
+     public function habilitacion_area()
+     {
+        $datos = request()->except('_token');
+        DB::table('areas')
+        ->where('area_id', '=', $datos['id2'])
+        ->update([
+            'area_estado' => 1
+        ]);
+ 
+         return redirect('areas');
+     }
 }

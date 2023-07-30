@@ -28,6 +28,7 @@ class EmpresaController extends Controller
                 'emp_correo' => $datos['correo'],
                 'emp_telefono' => $datos['telefono'],
                 'emp_direccion' => $datos['direccion'],
+                'emp_estado' => 1,
                 'emp_fecha_registro' => $hoy]);
             
         return redirect('perfil_empresarial');

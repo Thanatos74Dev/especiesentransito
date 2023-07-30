@@ -26,6 +26,8 @@ class SedeController extends Controller
         DB::table('sedes')
         ->insert(['sede_nombre' => $datos['nombre'],
                 'sede_direccion' => $datos['direccion'],
+                'sede_telefono' => $datos['telefono'],
+                'sede_estado' => 1,
                 'sede_fecha_registro' => $hoy]);
             
         return redirect('sedes');
@@ -51,24 +53,43 @@ class SedeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function actualizar_sede()    {
+        $hoy = date("Y-m-d");
+
+        $datos = request()->except('_token');
+        DB::table('sedes')
+            ->where('sede_id', '=', $datos['id'])
+            ->update(['sede_nombre' => $datos['nombre'],
+                'sede_direccion' => $datos['direccion'],
+                'sede_telefono' => $datos['telefono']
+            ]);
+            
+        return redirect('sedes');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    //MÉTODO PARA LA FUNCIONALIDAD DE INHABILITACIÓN DE SEDES 29/07/2023
+    public function inhabilitacion_sede()
     {
-        //
+        $datos = request()->except('_token');
+        DB::table('sedes')
+        ->where('sede_id', '=', $datos['id3'])
+        ->update([
+            'sede_estado' => 2
+        ]);
+
+        return redirect('sedes');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+     //MÉTODO PARA LA FUNCIONALIDAD DE HABILITACIÓN DE SEDES 29/07/2023
+     public function habilitacion_sede()
+     {
+        $datos = request()->except('_token');
+        DB::table('sedes')
+        ->where('sede_id', '=', $datos['id2'])
+        ->update([
+            'sede_estado' => 1
+        ]);
+ 
+         return redirect('sedes');
+     }
 }

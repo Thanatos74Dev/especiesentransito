@@ -105,14 +105,21 @@ Route::get('/equipos', [EquiposController::class, 'equipos'])->name('equipos');
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO ÁREAS 23/04/2023
 Route::get('/areas', [AreaController::class, 'areas'])->name('areas');
 Route::post('/registrar_areas', [AreaController::class, 'registrar_areas'])->name('registrar_areas');
+Route::post('/actualizar_area', [AreaController::class, 'actualizar_area'])->name('actualizar_area');
+Route::post('/habilitacion_area', [AreaController::class, 'habilitacion_area'])->name('habilitacion_area');
+Route::post('/inhabilitacion_area', [AreaController::class, 'inhabilitacion_area'])->name('inhabilitacion_area');
 
 
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO SEDES 23/04/2023
 Route::get('/sedes', [SedeController::class, 'sedes'])->name('sedes');
 Route::post('/registrar_sedes', [SedeController::class, 'registrar_sedes'])->name('registrar_sedes');
+Route::post('/actualizar_sede', [SedeController::class, 'actualizar_sede'])->name('actualizar_sede');
+Route::post('/habilitacion_sede', [SedeController::class, 'habilitacion_sede'])->name('habilitacion_sede');
+Route::post('/inhabilitacion_sede', [SedeController::class, 'inhabilitacion_sede'])->name('inhabilitacion_sede');
 
 
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO PERFIL EMPRESARIAL 23/04/2023
 Route::get('/perfil_empresarial', [EmpresaController::class, 'perfil_empresarial'])->name('perfil_empresarial');
 Route::post('/registrar_empresas', [EmpresaController::class, 'registrar_empresas'])->name('registrar_empresas');
 
+?>
