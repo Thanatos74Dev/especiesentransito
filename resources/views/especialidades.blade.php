@@ -294,7 +294,6 @@
 </div>
 @endsection
 
-
 @section('js')
     <script>
         $('#especialidades').DataTable({

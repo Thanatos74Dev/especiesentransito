@@ -12,6 +12,7 @@ use App\Http\Controllers\RiesgoController;
 use App\Http\Controllers\TiposMantenimientoController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\ComplejidadController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\SedeController;
 
@@ -36,7 +37,11 @@ Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 Route::get('/mantenimientos', [HomeController::class, 'mantenimientos'])->name('mantenimientos');
 
-Route::get('/complejidad', [HomeController::class, 'complejidad'])->name('complejidad');
+Route::get('/complejidad', [ComplejidadController::class, 'complejidad'])->name('complejidad');
+Route::post('/registrar_complejidad', [ComplejidadController::class, 'registrar_complejidad'])->name('registrar_complejidad');
+Route::post('/actualizar_complejidad', [ComplejidadController::class, 'actualizar_complejidad'])->name('actualizar_complejidad');
+Route::post('/habilitacion_complejidad', [ComplejidadController::class, 'habilitacion_complejidad'])->name('habilitacion_complejidad');
+Route::post('/inhabilitacion_complejidad', [ComplejidadController::class, 'inhabilitacion_complejidad'])->name('inhabilitacion_complejidad');
 
 
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO USUARIO 13/03/2023
@@ -100,6 +105,9 @@ Route::post('/inhabilitacion_proveedor', [ProveedorController::class, 'inhabilit
 
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO EQUIPOS 12/04/2023
 Route::get('/equipos', [EquiposController::class, 'equipos'])->name('equipos');
+Route::post('/registrar_equipo', [EquiposController::class, 'registrar_equipo'])->name('registrar_equipo');
+Route::post('/habilitacion_equipo', [EquiposController::class, 'habilitacion_equipo'])->name('habilitacion_equipo');
+Route::post('/inhabilitacion_equipo', [EquiposController::class, 'inhabilitacion_equipo'])->name('inhabilitacion_equipo');
 
 
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO ÁREAS 23/04/2023

@@ -18,9 +18,27 @@ class EquiposController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function registrar_equipo()
     {
-        //
+        $hoy = date("Y-m-d");
+
+        $datos = request();
+        DB::table('equipos')
+        ->insert(['equ_nombre' => $datos['nombre'],
+                'equ_fabricante' => $datos['fabricante'],
+                'equ_referencia' => $datos['referencia'],
+                'equ_serie' => $datos['serie'],
+                'equ_propiedad' => $datos['propiedad'],
+                'equ_activo' => $datos['activo'],
+                'equ_especialidad' => $datos['especialidad'],
+                'equ_tipo' => $datos['tipo'],
+                'equ_riesgo' => $datos['riesgo'],
+                'equ_complejidad' => $datos['complejidad'],
+                'equ_periodicidad' => $datos['periodicidad'],
+                'equ_estado' => 1,
+                'equ_fecha_registro' => $hoy]);
+            
+        return redirect('equipos');
     }
 
     /**
@@ -38,7 +56,9 @@ class EquiposController extends Controller
 
         $data4 = DB::table('periodicidad')->get();
 
-        return view('equipos', ['data' => $data, 'data1' => $data1, 'data2' => $data2, 'data3' => $data3, 'data4' => $data4]);
+        $data5 = DB::table('complejidades')->get();
+
+        return view('equipos', ['data' => $data, 'data1' => $data1, 'data2' => $data2, 'data3' => $data3, 'data4' => $data4, 'data5' => $data5]);
     }
 
     /**
@@ -57,19 +77,30 @@ class EquiposController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    //MÉTODO PARA LA FUNCIONALIDAD DE INHABILITACIÓN DE EQUIPOS BIOMÉDICOS 30/07/2023
+    public function inhabilitacion_equipo()
     {
-        //
+        $datos = request()->except('_token');
+        DB::table('equipos')
+        ->where('equ_id', '=', $datos['id3'])
+        ->update([
+            'equ_estado' => 2
+        ]);
+
+        return redirect('equipos');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    //MÉTODO PARA LA FUNCIONALIDAD DE HABILITACIÓN DE EQUIPOS BIOMÉDICOS 30/07/2023
+    public function habilitacion_equipo()
     {
-        //
+        $datos = request()->except('_token');
+        DB::table('equipos')
+        ->where('equ_id', '=', $datos['id2'])
+        ->update([
+            'equ_estado' => 1
+        ]);
+
+        return redirect('equipos');
     }
+
 }
