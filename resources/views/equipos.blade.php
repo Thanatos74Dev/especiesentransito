@@ -24,32 +24,51 @@
     @csrf
     
     <h4 class='mb-3' style='text-align: center;'>{{ __('Identificación del equipo') }}</h4>
-    Nombre del equipo: <br>
-    <div class="input-group mb-3">
-            <input type="text" name="nombre" class="form-control"
-                   placeholder="Nombre" required autofocus>
+
+    <div class="row">
+        <div class="col-sm-6">
+            Nombre del equipo: <br>
+            <div class="input-group mb-3">
+                    <input type="text" name="nombre" class="form-control"
+                        placeholder="Nombre" required autofocus>
+            </div>
+        <div class="form-group">
+    </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            Fabricante: <br>
+            <div class="input-group mb-3">
+            <select class="custom-select rounded-1" name="fabricante" required>
+                    <option value="0" selected>Seleccione un fabricante</option>
+                @foreach($data1 as $d1)
+                    <option value="{{ $d1->fab_id }}">{{ $d1->fab_id." - ".$d1->fab_nombre }}</option>
+                @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
     </div>
 
-    Fabricante: <br>
-    <div class="input-group mb-3">
-       <select class="custom-select rounded-1" name="fabricante" required>
-            <option value="0" selected>Seleccione un fabricante</option>
-        @foreach($data1 as $d1)
-            <option value="{{ $d1->fab_id }}">{{ $d1->fab_id." - ".$d1->fab_nombre }}</option>
-        @endforeach
-        </select>
+    <div class="row">
+        <div class="col-sm-6">
+            Referencia: <br>
+            <div class="input-group mb-3">
+                    <input type="text" name="referencia" class="form-control"
+                        placeholder="Referencia" required>
+            </div>
+        <div class="form-group">
     </div>
-
-    Referencia: <br>
-    <div class="input-group mb-3">
-            <input type="text" name="referencia" class="form-control"
-                   placeholder="Referencia" required>
     </div>
-
-    Número de serie: <br>
-    <div class="input-group mb-3">
-            <input type="text" name="serie" class="form-control"
-                   placeholder="Nro de serie" required>
+    <div class="col-sm-6">
+        <div class="form-group">
+            Número de serie: <br>
+            <div class="input-group mb-3">
+                    <input type="text" name="serie" class="form-control"
+                        placeholder="Nro de serie" required>
+            </div>
+        </div>
+    </div>
     </div>
 
     <div class="input-group mb-3">
@@ -68,76 +87,103 @@
     
     </div>
 
-    <div class="input-group mb-3">Activo Fijo: <br>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">
-                <input type="checkbox">
-                </span>
-            </div>
-            <input type="text" class="form-control" name="activo">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group mb-3">Activo Fijo: <br>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                        <input type="checkbox">
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" name="activo">
+                    </div>
+                </div>
+            <div class="form-group">
         </div>
     </div>
-
-    Especialidad: <br>
-    <div class="input-group mb-3">
-       <select class="custom-select rounded-1" name="especialidad" required>
-            <option value="0" selected>Seleccione una especialidad</option>
-            @foreach($data2 as $d2)
-                <option value="{{ $d2->esp_id }}">{{ $d2->esp_id." - ".$d2->esp_nombre }}</option>
-            @endforeach
-        </select>
+    <div class="col-sm-6">
+        <div class="form-group">
+            Especialidad: <br>
+            <div class="input-group mb-3">
+            <select class="custom-select rounded-1" name="especialidad" required>
+                    <option value="0" selected>Seleccione una especialidad</option>
+                    @foreach($data2 as $d2)
+                        <option value="{{ $d2->esp_id }}">{{ $d2->esp_id." - ".$d2->esp_nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     </div>
+    </div>
+   
 
+    
     <div class="card-header mb-3"></div>
 
     <h4 class='mb-3' style='text-align: center;'>{{ __('Descripción del equipo') }}</h4>
 
-    <div class="input-group mb-3">
-
-        Tipo de equipo: &nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="fijo" name="tipo" value="1" checked=""> 
-                <label class="form-check-label">Fijo</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" id="movil" name="tipo" value="2">
-                <label class="form-check-label">Móvil</label>
+    <div class="row">
+        <div class="col-sm-6">
+        <div class="input-group mb-3">
+            Tipo de equipo: &nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="fijo" name="tipo" value="1" checked=""> 
+                    <label class="form-check-label">Fijo</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="movil" name="tipo" value="2">
+                    <label class="form-check-label">Móvil</label>
+                </div>
             </div>
         </div>
-
+        <div class="form-group">
+    </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            Nivel de riesgo: <br>
+            <div class="input-group mb-3">
+            <select class="custom-select rounded-1" name="riesgo" required>
+                    <option value="0" selected>Seleccione un nivel de riesgo</option>
+                    @foreach($data3 as $d3)
+                        <option value="{{ $d3->riesgo_id }}">{{ $d3->riesgo_id." - ".$d3->riesgo_nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
     </div>
 
-       Nivel de riesgo: <br>
-    <div class="input-group mb-3">
-       <select class="custom-select rounded-1" name="riesgo" required>
-            <option value="0" selected>Seleccione un nivel de riesgo</option>
-            @foreach($data3 as $d3)
-                <option value="{{ $d3->riesgo_id }}">{{ $d3->riesgo_id." - ".$d3->riesgo_nombre }}</option>
-            @endforeach
-        </select>
+    <div class="row">
+        <div class="col-sm-6">
+            Nivel de complejidad: <br>
+            <div class="input-group mb-3">
+            <select class="custom-select rounded-1" name="complejidad" required>
+                    <option value="0" selected>Seleccione un nivel de complejidad</option>
+                    @foreach($data5 as $d5)
+                        <option value="{{ $d5->comp_id }}">{{ $d5->comp_id." - ".$d5->comp_nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+        <div class="form-group">
     </div>
-
-    Nivel de complejidad: <br>
-    <div class="input-group mb-3">
-       <select class="custom-select rounded-1" name="complejidad" required>
-            <option value="0" selected>Seleccione un nivel de complejidad</option>
-            @foreach($data5 as $d5)
-                <option value="{{ $d5->comp_id }}">{{ $d5->comp_id." - ".$d5->comp_nombre }}</option>
-            @endforeach
-        </select>
     </div>
-
-    Periodicidad de los mantenimientos: <br>
-    <div class="input-group mb-3">
-       <select class="custom-select rounded-1" name="periodicidad" required>
-            <option value="0" selected>Seleccione un nivel de periodicidad</option>
-            @foreach($data4 as $d4)
-                <option value="{{ $d4->per_id }}">{{ $d4->per_id." - ".$d4->per_nombre }}</option>
-            @endforeach
-        </select>
+    <div class="col-sm-6">
+        <div class="form-group">
+            Periodicidad de los mantenimientos: <br>
+            <div class="input-group mb-3">
+            <select class="custom-select rounded-1" name="periodicidad" required>
+                    <option value="0" selected>Seleccione un nivel de periodicidad</option>
+                    @foreach($data4 as $d4)
+                        <option value="{{ $d4->per_id }}">{{ $d4->per_id." - ".$d4->per_nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     </div>
+    </div> 
     </div>
 
     <div class="card-footer">
