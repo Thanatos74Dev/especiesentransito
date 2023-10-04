@@ -31,13 +31,21 @@
     </div>
     </div>
 
-
     <div class="input-group mb-3">
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-comment"></i></span>
         </div>
         <textarea class="form-control" name="descripcion" cols="20" rows="3" placeholder="Descripción de la periodicidad" required></textarea>
+    </div>
+    </div>
+
+    <div class="input-group mb-3">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-clock"></i></span>
+        </div>
+        <input type="number" class="form-control" name="dias" placeholder="Días para ejecutar periodicidad" required>
     </div>
     </div>
 
@@ -86,13 +94,24 @@
                 </div>
                 </div>
 
-                <div class="input-group mb-3">
+            <div class="input-group mb-3">
                     Descripción periodicidad: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-comment"></i></span>
                     </div>
                     <textarea class="form-control" id="descripcion" name="descripcion" cols="20" rows="3" placeholder="Descripción de la periodicidad" required></textarea>
+                </div>
+                </div>
+
+                
+            <div class="input-group mb-3">
+                Días de periodicidad: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                    </div>
+                    <input type="number" class="form-control" id="dias" name="dias" placeholder="Días para ejecutar esta periodicidad" required>
                 </div>
                 </div>
 
@@ -141,7 +160,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="nombre2" name="nombre2" placeholder="Nombre completo" autofocus required>
+                    <input type="text" class="form-control" id="nombre2" name="nombre2" placeholder="Nombre periodicidad" autofocus required>
                 </div>
                 </div>
 
@@ -194,17 +213,17 @@
                 </div>
 
             <div class="input-group mb-3">
-                Nombre proveedor: 
+                Nombre periodicidad: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="nombre3" name="nombre3" placeholder="Nombre completo" autofocus required>
+                    <input type="text" class="form-control" id="nombre3" name="nombre3" placeholder="Nombre periodicidad" autofocus required>
                 </div>
                 </div>
 
                 <div class="input-group mb-3">
-                    Estado proveedor: 
+                    Estado periodicidad: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-eye"></i></span>
@@ -249,6 +268,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Nombre</th>
                 <th scope="col" class="d-none d-sm-block">Descripción</th>
+                <th scope="col">Días</th>
                 <th scope="col" colspan='2'>Acciones</th>
                 <th scope="col" class="d-none d-md-block">Última mod</th>
                 </tr>
@@ -260,9 +280,10 @@
                     <td style="vertical-align: middle;">{{ $d->per_id }}</td>
                     <td style="vertical-align: middle;">{{ $d->per_nombre }}</td>
                     <td align="justify" class="d-none d-sm-block">{{ $d->per_descripcion }}</td>
+                    <td style="vertical-align: middle;">{{ $d->per_dias }}</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Editar" id="editar"
-                        data-id="{{ $d->per_id }}" data-nombre="{{ $d->per_nombre }}" data-descripcion="{{ $d->per_descripcion }}">
+                        data-id="{{ $d->per_id }}" data-nombre="{{ $d->per_nombre }}" data-descripcion="{{ $d->per_descripcion }}" data-dias="{{ $d->per_dias }}">
                             <span class="fas fa-edit"></span>
                         </button>
                     </td>
@@ -321,10 +342,12 @@
             var id = $(this).data('id');
             var nombre = $(this).data('nombre');
             var descripcion = $(this).data('descripcion');
+            var dias = $(this).data('dias');
 
             $("#id").val(id);
             $("#nombre").val(nombre);
             $("#descripcion").val(descripcion);
+            $("#dias").val(dias);
         });
 
         $(document).on("click", "#habilitar", function() {

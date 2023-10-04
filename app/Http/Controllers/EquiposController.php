@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\TiposMantenimientoController;
+use App\Http\Controllers\PeriodicidadController;
 
 class EquiposController extends Controller
 {
+    // USO DE LOS TRAITS NECESARIOS PARA LOS PROCESOS DE ESTE CONTROLADOR
+    use mantenimientos;
+    use periodicidad;
     /**
      * Display a listing of the resource.
      */
@@ -38,6 +43,13 @@ class EquiposController extends Controller
                 'equ_estado' => 1,
                 'equ_fecha_registro' => $hoy]);
             
+        $dias = $this->consultar_periodicidad($datos['periodicidad']);
+        $dias = intval($dias);
+        $fecha_mantenimiento = $hoy + $dias;
+
+        $equipo = $this->consultar_ultimo_equipo();
+
+        $this->registrar_mantenimiento($equipo, $datos['tipo'], $datos['periodicidad'], $fecha_mantenimiento);
         return redirect('equipos');
     }
 
@@ -103,4 +115,14 @@ class EquiposController extends Controller
         return redirect('equipos');
     }
 
+
+    //MÉTODO PARA LA FUNCIONALIDAD DE REGISTRO DE MANTENIMIENTOS DURANTE EL REGISTRO DE UN EQUIPO BIOMÉDICO 03/09/2023
+     public function consultar_ultimo_equipo()
+     {
+        $data = DB::table('equipos')
+        ->orderByDesc('equ_id')
+        ->limit(1)
+        ->get();
+     }
+     
 }

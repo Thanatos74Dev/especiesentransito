@@ -26,6 +26,7 @@ class PeriodicidadController extends Controller
         DB::table('periodicidad')
         ->insert(['per_nombre' => $datos['nombre'],
                 'per_descripcion' => $datos['descripcion'],
+                'per_dias' => $datos['dias'],
                 'per_estado' => 1,
                 'per_fecha_registro' => $hoy]);
             
@@ -59,7 +60,8 @@ class PeriodicidadController extends Controller
         DB::table('periodicidad')
             ->where('per_id', '=', $datos['id'])
             ->update(['per_nombre' => $datos['nombre'],
-                'per_descripcion' => $datos['descripcion']
+                'per_descripcion' => $datos['descripcion'],
+                'per_dias' => $datos['dias']
             ]);
             
         return redirect('periodicidad');
@@ -90,4 +92,17 @@ class PeriodicidadController extends Controller
  
          return redirect('periodicidad');
      }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+trait periodicidad{
+
+    //MÉTODO PARA LA FUNCIONALIDAD DE REGISTRO DE MANTENIMIENTOS DURANTE EL REGISTRO DE UN EQUIPO BIOMÉDICO 03/09/2023
+     public function consultar_periodicidad($periodicidad)
+     {
+        $data = DB::table('periodicidad')
+        ->where('per_id', '=', $periodicidad)
+        ->get('per_dias');
+     }
+     
 }

@@ -90,5 +90,25 @@ class TiposMantenimientoController extends Controller
  
          return redirect('tipo_mantenimientos');
      }
+
+
+    }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+trait mantenimientos{
+
+    //MÉTODO PARA LA FUNCIONALIDAD DE REGISTRO DE MANTENIMIENTOS DURANTE EL REGISTRO DE UN EQUIPO BIOMÉDICO 03/09/2023
+     public function registrar_mantenimiento($equipo, $tipo, $periodicidad, $fecha)
+     {
+         $hoy = date("Y-m-d");
+
+         DB::table('mantenimientos')
+         ->insert(['man_equ_id' => $equipo,
+                 'man_tipo' => $tipo,
+                 'man_periodicidad' => $periodicidad,
+                 'man_estado' => 1,
+                 'man_fecha_man' => $fecha,
+                 'man_fecha_registro' => $hoy]);
+     }
      
 }

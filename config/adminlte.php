@@ -355,7 +355,7 @@ return [
                     'icon' => 'fas fa-fw fa-clock',
                 ],
                 [
-                    'text' => 'Mantenimientos',
+                    'text' => 'Tipo Mantenimientos',
                     'url'  => 'tipo_mantenimientos',
                     'icon' => 'fas fa-fw fa-wrench',
                 ],
