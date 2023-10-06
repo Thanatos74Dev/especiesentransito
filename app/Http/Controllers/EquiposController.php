@@ -10,8 +10,8 @@ use App\Http\Controllers\PeriodicidadController;
 class EquiposController extends Controller
 {
     // USO DE LOS TRAITS NECESARIOS PARA LOS PROCESOS DE ESTE CONTROLADOR
-    use mantenimientos;
-    use periodicidad;
+    // use mantenimientos;
+    // use periodicidad;
     /**
      * Display a listing of the resource.
      */

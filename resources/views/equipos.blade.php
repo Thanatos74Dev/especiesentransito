@@ -199,58 +199,179 @@
     <form action="actualizar_proveedor" method="post">
     @csrf
 
-    <div class="modal fade" id="edicion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal fade edicion-modal-lg" id="edicion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-dark">
             <h5 class="modal-title" id="estadoLabel">Edición de equipo biomédico</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
+
         <div class="modal-body">
-       
-        <div class="input-group mb-3">
-            Id:
-                <div class="input-group">
-               
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-key"></i></span>
-                    </div>
-                    <input type="text" class="form-control" id="id" name="id" required readonly>
-                </div>
-                </div>
+        <h4 class='mb-3' style='text-align: center;'>{{ __('Identificación del equipo') }}</h4>
 
-            <div class="input-group mb-3">
-                Nombre equipo: 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    </div>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" autofocus required>
-                </div>
-                </div>
+        <div class="row">
 
+            <div class="col-sm-4">
+                Id del equipo: <br>
                 <div class="input-group mb-3">
-                    Fabricante: 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-cog"></i></span>
-                    </div>
-                    <input type="txt" class="form-control" id="fabricante" name="fabricante" placeholder="Fabricante del equipo biomédico" required>
+                        <input type="text" name="id" id="id" class="form-control" required readonly>
                 </div>
-                </div>
-
+            <div class="form-group">
+            </div>
+            </div>
+            <div class="col-sm-4">
+                Nombre del equipo: <br>
                 <div class="input-group mb-3">
-                    Teléfono: 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    </div>
-                    <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required>
+                        <input type="text" name="nombre" id="nombre" class="form-control" required>
                 </div>
+            <div class="form-group">
+            </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                Fabricante: <br>
+                <div class="input-group mb-3">
+                    <input type="text" name="fabricante" id="fabricante" class="form-control" required>
                 </div>
             </div>
+    </div>
+        </div>
+
+    <div class="row">
+   
+        <div class="col-sm-4">
+            Referencia: <br>
+            <div class="input-group mb-3">
+                    <input type="text" name="referencia" id="referencia" class="form-control" required>
+            </div>
+        <div class="form-group">
+    </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            Número de serie: <br>
+            <div class="input-group mb-3">
+                    <input type="text" name="serie" id="serie" class="form-control" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            Propiedad: <br>
+            <div class="input-group mb-3">
+                    <input type="text" name="propiedad" id="propiedad" class="form-control" required>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            <div class="input-group mb-3">Activo Fijo: <br>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                        <input type="checkbox">
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" name="activo">
+                    </div>
+                </div>
+            <div class="form-group">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            Especialidad: <br>
+            <div class="input-group mb-3">
+            <select class="custom-select rounded-1" name="especialidad" required>
+                    <option value="0" selected>Seleccione una nueva especialidad</option>
+                    @foreach($data2 as $d2)
+                        <option value="{{ $d2->esp_id }}">{{ $d2->esp_id." - ".$d2->esp_nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+
+    </div>
+   
+
+    
+    <div class="card-header mb-3"></div>
+
+    <h4 class='mb-3' style='text-align: center;'>{{ __('Descripción del equipo') }}</h4>
+
+    <div class="row">
+        <div class="col-sm-6">
+        <div class="input-group mb-3">
+            Tipo de equipo: &nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="fijo" name="tipo" value="1" checked=""> 
+                    <label class="form-check-label">Fijo</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="movil" name="tipo" value="2">
+                    <label class="form-check-label">Móvil</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+    </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            Nivel de riesgo: <br>
+            <div class="input-group mb-3">
+            <input type="text" name="riesgo1" id="riesgo1" class="form-control" required>
+            <select class="custom-select rounded-1" name="riesgo" required>
+                    <option value="0" selected>Seleccione un nuevo nivel de riesgo</option>
+                    @foreach($data3 as $d3)
+                        <option value="{{ $d3->riesgo_id }}">{{ $d3->riesgo_id." - ".$d3->riesgo_nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            Nivel de complejidad: <br>
+            <div class="input-group mb-3">
+            <input type="text" name="complejidad1" id="complejidad1" class="form-control" required>
+            <select class="custom-select rounded-1" name="complejidad" required>
+                    <option value="0" selected>Seleccione un nuevo nivel de complejidad</option>
+                    @foreach($data5 as $d5)
+                        <option value="{{ $d5->comp_id }}">{{ $d5->comp_id." - ".$d5->comp_nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+        <div class="form-group">
+    </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            Periodicidad de los mantenimientos: <br>
+            <div class="input-group mb-3">
+            <input type="text" name="periodicidad1" id="periodicidad1" class="form-control" required>
+            <select class="custom-select rounded-1" name="periodicidad" required>
+                    <option value="0" selected>Seleccione un nivel de periodicidad</option>
+                    @foreach($data4 as $d4)
+                        <option value="{{ $d4->per_id }}">{{ $d4->per_id." - ".$d4->per_nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    </div> 
+    </div>
 
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">
@@ -271,8 +392,8 @@
     <div class="modal fade" id="habilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="estadoLabel">Estado del habilitacion_equipo</h5>
+        <div class="modal-header bg-dark">
+            <h5 class="modal-title" id="estadoLabel">Estado del equipo biomédico</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -329,8 +450,8 @@
     <div class="modal fade" id="inhabilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="estadoLabel">Estado del habilitacion_equipo</h5>
+        <div class="modal-header bg-dark">
+            <h5 class="modal-title" id="estadoLabel">Estado del equipo biomédico</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -413,7 +534,9 @@
                     <td class="d-none d-sm-block">{{ $d->equ_fabricante }}</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Editar" id="editar"
-                        data-id="{{ $d->equ_id }}" data-nombre="{{ $d->equ_nombre }}" data-fabricante="{{ $d->equ_fabricante }}">
+                        data-id="{{ $d->equ_id }}" data-nombre="{{ $d->equ_nombre }}" data-fabricante="{{ $d->equ_fabricante }}"
+                        data-referencia="{{ $d->equ_referencia }}" data-serie="{{ $d->equ_serie }}" data-propiedad="{{ $d->equ_propiedad }}"
+                        data-riesgo1="{{ $d->equ_riesgo }}" data-complejidad1="{{ $d->equ_complejidad }}" data-periodicidad1="{{ $d->equ_periodicidad }}">
                             <span class="fas fa-edit"></span>
                         </button>
                     </td>
@@ -476,10 +599,22 @@
             var id = $(this).data('id');
             var nombre = $(this).data('nombre');
             var fabricante = $(this).data('fabricante');
+            var referencia = $(this).data('referencia');
+            var serie = $(this).data('serie');
+            var propiedad = $(this).data('propiedad');
+            var riesgo1 = $(this).data('riesgo1');
+            var complejidad1 = $(this).data('complejidad1');
+            var periodicidad1 = $(this).data('periodicidad1');
 
             $("#id").val(id);
             $("#nombre").val(nombre);
             $("#fabricante").val(fabricante);
+            $("#referencia").val(referencia);
+            $("#serie").val(serie);
+            $("#propiedad").val(propiedad);
+            $("#riesgo1").val(riesgo1);
+            $("#complejidad1").val(complejidad1);
+            $("#periodicidad1").val(periodicidad1);
         });
 
         $(document).on("click", "#habilitar", function() {
