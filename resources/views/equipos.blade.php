@@ -196,7 +196,7 @@
     </div>
 
     <!-- MODAL EDICIÓN DE EQUIPOS BIOMÉDICOS -->
-    <form action="actualizar_proveedor" method="post">
+    <form action="actualizar_equipo" method="post">
     @csrf
 
     <div class="modal fade edicion-modal-lg" id="edicion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
@@ -289,6 +289,7 @@
         <div class="form-group">
             Especialidad: <br>
             <div class="input-group mb-3">
+            <input type="text" name="especialidad1" id="especialidad1" class="form-control" required readonly>
             <select class="custom-select rounded-1" name="especialidad" required>
                     <option value="0" selected>Seleccione una nueva especialidad</option>
                     @foreach($data2 as $d2)
@@ -308,28 +309,19 @@
     <h4 class='mb-3' style='text-align: center;'>{{ __('Descripción del equipo') }}</h4>
 
     <div class="row">
-        <div class="col-sm-6">
-        <div class="input-group mb-3">
-            Tipo de equipo: &nbsp;&nbsp;&nbsp;&nbsp;
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="fijo" name="tipo" value="1" checked=""> 
-                    <label class="form-check-label">Fijo</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="movil" name="tipo" value="2">
-                    <label class="form-check-label">Móvil</label>
-                </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            Tipo de equipo: <br>
+            <div class="input-group mb-3">
+                    <input type="text" name="tipo1" id="tipo1" class="form-control" required readonly>
             </div>
         </div>
-        <div class="form-group">
-    </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group">
             Nivel de riesgo: <br>
             <div class="input-group mb-3">
-            <input type="text" name="riesgo1" id="riesgo1" class="form-control" required>
+            <input type="text" name="riesgo1" id="riesgo1" class="form-control" required readonly>
             <select class="custom-select rounded-1" name="riesgo" required>
                     <option value="0" selected>Seleccione un nuevo nivel de riesgo</option>
                     @foreach($data3 as $d3)
@@ -345,7 +337,7 @@
         <div class="col-sm-6">
             Nivel de complejidad: <br>
             <div class="input-group mb-3">
-            <input type="text" name="complejidad1" id="complejidad1" class="form-control" required>
+            <input type="text" name="complejidad1" id="complejidad1" class="form-control" required readonly>
             <select class="custom-select rounded-1" name="complejidad" required>
                     <option value="0" selected>Seleccione un nuevo nivel de complejidad</option>
                     @foreach($data5 as $d5)
@@ -360,7 +352,7 @@
         <div class="form-group">
             Periodicidad de los mantenimientos: <br>
             <div class="input-group mb-3">
-            <input type="text" name="periodicidad1" id="periodicidad1" class="form-control" required>
+            <input type="text" name="periodicidad1" id="periodicidad1" class="form-control" required readonly>
             <select class="custom-select rounded-1" name="periodicidad" required>
                     <option value="0" selected>Seleccione un nivel de periodicidad</option>
                     @foreach($data4 as $d4)
@@ -533,10 +525,65 @@
                     <td>{{ $d->equ_nombre }}</td>
                     <td class="d-none d-sm-block">{{ $d->equ_fabricante }}</td>
                     <td>
+                        <!-- Ciclos foreach para recorrer los arreglos con los parámetros de las tablas y mostrar el nombre de dicho parámetro -->
+                        <?php
+                            $nombre_riesgo_actual = "";
+                            
+                        foreach ($data3 as $riesgos)
+                            if($riesgos->riesgo_id === $d->equ_riesgo){
+                                $nombre_riesgo_actual = $riesgos->riesgo_nombre;
+                            }
+
+                            $nombre_complejidad_actual = "";
+                            
+                        foreach ($data5 as $complejidades)
+                            if($complejidades->comp_id === $d->equ_complejidad){
+                                $nombre_complejidad_actual = $complejidades->comp_nombre;
+                            }
+
+                            $nombre_periodicidad_actual = "";
+                            
+                        foreach ($data4 as $periodicidades)
+                            if($periodicidades->per_id === $d->equ_periodicidad){
+                                $nombre_periodicidad_actual = $periodicidades->per_nombre;
+                            }
+
+                            $nombre_fabricante_actual = "";
+                            
+                        foreach ($data1 as $fabricantes)
+                            if($fabricantes->fab_id === $d->equ_fabricante){
+                                $nombre_fabricante_actual = $fabricantes->fab_nombre;
+                            }
+
+                            $nombre_especialidad_actual = "";
+                            
+                        foreach ($data2 as $especialdiades)
+                            if($especialdiades->esp_id === $d->equ_especialidad){
+                                $nombre_especialidad_actual = $especialdiades->esp_nombre;
+                            }
+                        
+                            $nombre_propiedad_actual = "";
+
+                            if($d->equ_propiedad === 1){
+                                $nombre_propiedad_actual = "Propio";
+                            } else {
+                                $nombre_propiedad_actual = "Alquilado";
+                            }
+
+                            $nombre_tipo_actual = "";
+
+                            if($d->equ_tipo  === 1){
+                                $nombre_tipo_actual = "Fijo";
+                            } else {
+                                $nombre_tipo_actual = "Móvil";
+                            }
+
+
+                        ?>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Editar" id="editar"
-                        data-id="{{ $d->equ_id }}" data-nombre="{{ $d->equ_nombre }}" data-fabricante="{{ $d->equ_fabricante }}"
-                        data-referencia="{{ $d->equ_referencia }}" data-serie="{{ $d->equ_serie }}" data-propiedad="{{ $d->equ_propiedad }}"
-                        data-riesgo1="{{ $d->equ_riesgo }}" data-complejidad1="{{ $d->equ_complejidad }}" data-periodicidad1="{{ $d->equ_periodicidad }}">
+                        data-id="{{ $d->equ_id }}" data-nombre="{{ $d->equ_nombre }}" data-fabricante="{{ $nombre_fabricante_actual }}"
+                        data-referencia="{{ $d->equ_referencia }}" data-serie="{{ $d->equ_serie }}" data-propiedad="{{ $nombre_propiedad_actual }}" data-especialidad1="{{ $nombre_especialidad_actual }}"
+                        data-tipo1="{{ $nombre_tipo_actual }}" data-riesgo1="{{ $nombre_riesgo_actual }}" data-complejidad1="{{ $nombre_complejidad_actual }}" data-periodicidad1="{{ $nombre_periodicidad_actual }}">
                             <span class="fas fa-edit"></span>
                         </button>
                     </td>
@@ -601,7 +648,9 @@
             var fabricante = $(this).data('fabricante');
             var referencia = $(this).data('referencia');
             var serie = $(this).data('serie');
+            var especialidad1 = $(this).data('especialidad1');
             var propiedad = $(this).data('propiedad');
+            var tipo1 = $(this).data('tipo1');
             var riesgo1 = $(this).data('riesgo1');
             var complejidad1 = $(this).data('complejidad1');
             var periodicidad1 = $(this).data('periodicidad1');
@@ -611,7 +660,9 @@
             $("#fabricante").val(fabricante);
             $("#referencia").val(referencia);
             $("#serie").val(serie);
+            $("#especialidad1").val(especialidad1);
             $("#propiedad").val(propiedad);
+            $("#tipo1").val(tipo1);
             $("#riesgo1").val(riesgo1);
             $("#complejidad1").val(complejidad1);
             $("#periodicidad1").val(periodicidad1);

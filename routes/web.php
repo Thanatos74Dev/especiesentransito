@@ -106,6 +106,7 @@ Route::post('/inhabilitacion_proveedor', [ProveedorController::class, 'inhabilit
 //ENRUTAMIENTO DE FUNCIONALIDADES PARA EL MÓDULO EQUIPOS 12/04/2023
 Route::get('/equipos', [EquiposController::class, 'equipos'])->name('equipos');
 Route::post('/registrar_equipo', [EquiposController::class, 'registrar_equipo'])->name('registrar_equipo');
+Route::post('/actualizar_equipo', [EquiposController::class, 'actualizar_equipo'])->name('actualizar_equipo');
 Route::post('/habilitacion_equipo', [EquiposController::class, 'habilitacion_equipo'])->name('habilitacion_equipo');
 Route::post('/inhabilitacion_equipo', [EquiposController::class, 'inhabilitacion_equipo'])->name('inhabilitacion_equipo');
 

@@ -84,9 +84,18 @@ class EquiposController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function actualizar_equipo()    {
+        $hoy = date("Y-m-d");
+
+        $datos = request()->except('_token');
+        DB::table('equipos')
+            ->where('equ_id', '=', $datos['id'])
+            ->update(['equ_nombre' => $datos['nombre'],
+                'equ_referencia' => $datos['referencia'],
+                'equ_serie' => $datos['serie']
+            ]);
+            
+        return redirect('equipos');
     }
 
     //MÉTODO PARA LA FUNCIONALIDAD DE INHABILITACIÓN DE EQUIPOS BIOMÉDICOS 30/07/2023
