@@ -15,7 +15,7 @@ return [
     */
 
     'title' => '',
-    'title_prefix' => 'BioEquipos | ',
+    'title_prefix' => 'Especies | ',
     'title_postfix' => '',
 
     /*
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Bio</b>Equipos',
+    'logo' => '<b>Especies en </b>Tránsito',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -291,11 +291,6 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
         ['header' => 'PANEL DE CONTROL'],
         [
             'text'    => 'Panel de control',
@@ -307,18 +302,8 @@ return [
             'icon' => 'fas fa-fw fa-home',
         ],
         [
-            'text' => 'Equipos biomédicos',
-            'url'  => 'equipos',
-            'icon' => 'fas fa-fw fa-medkit',
-        ],
-        [
-            'text' => 'Mantenimientos',
-            'url'  => 'mantenimientos',
-            'icon' => 'fas fa-fw fa-briefcase',
-        ],
-        [
-            'text' => 'Proveedores',
-            'url'  => 'proveedores',
+            'text' => 'Mensajeros',
+            'url'  => 'mensajeros',
             'icon' => 'fas fa-fw fa-users',
         ],
         [
@@ -328,51 +313,7 @@ return [
         ],
     ],
 ],
-
-        ['header' => 'PARAMETRIZACIÓN'],
-        [
-            'type'         => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
-
-        [
-            'text'    => 'Equipos Biomédicos',
-            'icon'    => 'fas fa-fw fa-cog',
-            'submenu' => [
-                [
-                    'text' => 'Fabricantes',
-                    'url'  => 'fabricantes',
-                    'icon' => 'fas fa-fw fa-cogs',
-                ],
-                [
-                    'text' => 'Especialidades',
-                    'url'  => 'especialidades',
-                    'icon' => 'fas fa-fw fa-user-md',
-                ],
-                [
-                    'text' => 'Periodicidad',
-                    'url'  => 'periodicidad',
-                    'icon' => 'fas fa-fw fa-clock',
-                ],
-                [
-                    'text' => 'Tipo Mantenimientos',
-                    'url'  => 'tipo_mantenimientos',
-                    'icon' => 'fas fa-fw fa-wrench',
-                ],
-                [
-                    'text' => 'Niveles de riesgo',
-                    'url'  => 'riesgos',
-                    'icon' => 'fas fa-fw fa-fire',
-                ],
-                [
-                    'text' => 'Niveles de complejidad',
-                    'url'  => 'complejidad',
-                    'icon' => 'fas fa-fw fa-bolt',
-                ],
-            ],
-        ],
-
-        // Sidebar items:
+        
         ['header' => 'CONFIGURACIÓN'],
 
         [
@@ -391,27 +332,6 @@ return [
         ],
     ],
     ],
-    [
-        'text'    => 'Cuenta empresarial',
-        'icon'    => 'fas fa-fw fa-building',
-        'submenu' => [
-    [
-        'text' => 'Perfil empresarial',
-        'url'  => 'perfil_empresarial',
-        'icon' => 'fas fa-fw fa-user',
-    ],
-    [
-        'text' => 'Sedes',
-        'url'  => 'sedes',
-        'icon' => 'fas fa-fw fa-building',
-    ],
-    [
-        'text' => 'Áreas',
-        'url'  => 'areas',
-        'icon' => 'fas fa-fw fa-layer-group',
-    ],
-],
-],
 ],
 
     /*

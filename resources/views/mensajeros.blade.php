@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Áreas')
+@section('title', 'Mensajeros')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,7 @@
     <div class="col-md-6">
         <br>
             <div class="card">
-                <div class="card-header text-white bg-dark mb-3">{{ __('Registro de área') }}</div>
+                <div class="card-header text-white bg-dark mb-3">{{ __('Registro de mensajero') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -19,24 +19,33 @@
                     @endif
 
                     
-    <form action="registrar_areas" method="post">
+    <form action="registrar_mensajero" method="post">
     @csrf
     
     <div class="input-group mb-3">
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-home"></i></span>
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
         </div>
-        <input type="text" class="form-control" name="nombre" placeholder="Nombre" autofocus required>
+        <input type="text" class="form-control" name="nombre" placeholder="Nombre completo" autofocus required>
     </div>
     </div>
 
     <div class="input-group mb-3">
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-comment"></i></span>
+            <span class="input-group-text"><i class="fas fa-at"></i></span>
         </div>
-        <textarea class="form-control" name="notas" cols="20" rows="3" placeholder="Notas para el área" required></textarea>
+        <input type="email" class="form-control" name="correo" placeholder="Correo electrónico" required>
+    </div>
+    </div>
+
+    <div class="input-group mb-3">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+        </div>
+        <input type="number" class="form-control" name="telefono" placeholder="Teléfono" required>
     </div>
     </div>
 
@@ -46,17 +55,23 @@
     <button type="submit" class="btn btn-primary float-right">
         <span class="fas fa-plus"></span> Registrar</button>
     </div>
-    </form>
 
-    <!-- MODAL EDICIÓN DE ÁREAS -->
-    <form action="actualizar_area" method="post">
+    </form>
+                         
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL EDICIÓN DE MENSAJERO -->
+    <form action="actualizar_mensajero" method="post">
     @csrf
 
     <div class="modal fade" id="edicion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="estadoLabel">Edición de área</h5>
+        <div class="modal-header bg-dark">
+            <h5 class="modal-title" id="estadoLabel">Edición de mensajero</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -75,7 +90,7 @@
                 </div>
 
             <div class="input-group mb-3">
-                Nombre área: 
+                Nombre mensajero: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -85,15 +100,24 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    Notas: 
+                    Correo electrónico: 
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-comment"></i></span>
+                        <span class="input-group-text"><i class="fas fa-at"></i></span>
                     </div>
-                    <textarea class="form-control" id="notas" name="notas" cols="20" rows="3" placeholder="Notas para el área" required></textarea>
+                    <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" required>
                 </div>
                 </div>
 
+                <div class="input-group mb-3">
+                    Teléfono: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    </div>
+                    <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required>
+                </div>
+                </div>
             </div>
 
         <div class="modal-footer">
@@ -108,15 +132,15 @@
     </div>
     </form>
 
-    <!-- MODAL HABILITACIÓN DE ÁREAS -->
-    <form action="habilitacion_area" method="post">
+    <!-- MODAL HABILITACIÓN DE MENSAJERO -->
+    <form action="habilitacion_mensajero" method="post">
     @csrf
 
     <div class="modal fade" id="habilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="estadoLabel">Estado del área</h5>
+        <div class="modal-header bg-dark">
+            <h5 class="modal-title" id="estadoLabel">Estado del mensajero</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -134,7 +158,7 @@
                 </div>
 
             <div class="input-group mb-3">
-                Nombre área: 
+                Nombre mensajero: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -144,12 +168,12 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    Estado área: 
+                    Estado mensajero: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-eye"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="estado2" name="estado2" placeholder="Estado del área" required>
+                    <input type="text" class="form-control" id="estado2" name="estado2" placeholder="Estado del mensajero" required>
                 </div>
                 </div>
             </div>
@@ -166,15 +190,15 @@
     </div>
     </form>
 
-    <!-- MODAL INHABILITACIÓN DE ÁREAS -->
-    <form action="inhabilitacion_area" method="post">
+    <!-- MODAL INHABILITACIÓN DE MENSAJERO -->
+    <form action="inhabilitacion_mensajero" method="post">
     @csrf
 
     <div class="modal fade" id="inhabilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="estadoLabel">Estado del área</h5>
+        <div class="modal-header bg-dark">
+            <h5 class="modal-title" id="estadoLabel">Estado del mensajero</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -192,7 +216,7 @@
                 </div>
 
             <div class="input-group mb-3">
-                Nombre área: 
+                Nombre mensajero: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -202,12 +226,12 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    Estado área: 
+                    Estado mensajero: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-eye"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="estado3" name="estado3" placeholder="Estado del área" required>
+                    <input type="text" class="form-control" id="estado3" name="estado3" placeholder="Estado del mensajero" required>
                 </div>
                 </div>
             </div>
@@ -223,15 +247,11 @@
     </div>
     </div>
     </form>
-                    
-            </div>
-        </div>
 
-
-        <div class="col-md-12">
+    <div class="col-md-12">
         <br>
             <div class="card">
-                <div class="card-header text-white bg-dark mb-3">{{ __('Listado de áreas') }}</div>
+                <div class="card-header text-white bg-dark mb-3">{{ __('Listado de mensajeros') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -242,46 +262,46 @@
 
         @csrf
 
-        <table class="table table-striped table-hover" id="riesgos" style='text-align: center; vertical-align: middle;'>
+        <table class="table table-striped table-hover" id="mensajeroes" style='text-align: center; vertical-align: middle;'>
             <thead align="center">
                 <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nombre</th>
-                <th scope="col" class="d-none d-sm-block">Notas</th>
+                <th scope="col" class="d-none d-sm-block">Correo</th>
                 <th scope="col" colspan='2'>Acciones</th>
-                <th scope="col" class="d-none d-md-block">Última mod</th>
+                <th scope="col">Última mod</th>
                 </tr>
             </thead>
            
             <tbody>
             @foreach($data as $d)
                 <tr>
-                    <td style="vertical-align: middle;">{{ $d->area_id }}</td>
-                    <td style="vertical-align: middle;">{{ $d->area_nombre }}</td>
-                    <td style="vertical-align: middle;" class="d-none d-sm-block">{{ $d->area_notas }}</td>
+                    <td>{{ $d->men_id }}</td>
+                    <td>{{ $d->men_nombre }}</td>
+                    <td class="d-none d-sm-block">{{ $d->men_correo }}</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Editar" id="editar"
-                        data-id="{{ $d->area_id }}" data-nombre="{{ $d->area_nombre }}" data-notas="{{ $d->area_notas }}">
+                        data-id="{{ $d->men_id }}" data-nombre="{{ $d->men_nombre }}" data-correo="{{ $d->men_correo }}" data-telefono="{{ $d->men_telefono }}">
                             <span class="fas fa-edit"></span>
                         </button>
                     </td>
-                    @if ($d->area_estado === 1)
+                    @if ($d->men_estado === 1)
                     <td>
                         <button type="button" class="btn btn-primary bg-red" data-toggle="modal" data-target="#inhabilitacion" title="Inhabilitar" id="inhabilitar"
-                        data-id3="{{ $d->area_id }}" data-nombre3="{{ $d->area_nombre }}" data-estado3="El área se encuentra habilitada">
+                        data-id3="{{ $d->men_id }}" data-nombre3="{{ $d->men_nombre }}" data-estado3="El mensajero se encuentra habilitado">
                             <span class="fas fa-thumbs-down"></span>
                         </button>
                     </td>
                     @else
                     <td>
                         <button type="button" class="btn btn-primary bg-green" data-toggle="modal" data-target="#habilitacion" title="Habilitar" id="habilitar"
-                        data-id2="{{ $d->area_id }}" data-nombre2="{{ $d->area_nombre }}" data-estado2="El área se encuentra inhabilitada">
+                        data-id2="{{ $d->men_id }}" data-nombre2="{{ $d->men_nombre }}" data-estado2="El mensajero se encuentra inhabilitado">
                             <span class="fas fa-thumbs-up"></span>
                         </button>
                     </td>
                     @endif
-
-                    <td style="vertical-align: middle;" class="d-none d-md-block">{{ $d->area_fecha_registro }}</td>
+                   
+                    <td >{{ $d->men_fecha_registro }}</td>
                 </tr>
             @endforeach
              </tbody>
@@ -291,17 +311,18 @@
             </div>
         </div>
     </div>
-    </div>
 </div>
 @endsection
 
+
 @section('js')
+
     <script>
-        $('#riesgos').DataTable({
+        $('#mensajeroes').DataTable({
             responsive: true,
             autoWidth: false,
 
-        "language": {
+        "language": {   
             "lengthMenu": "Mostrar _MENU_ registros de página",
             "zeroRecords": "No se han encontrado registros",
             "info": "Mostrando página _PAGE_ de _PAGES_",
@@ -318,11 +339,13 @@
         $(document).on("click", "#editar", function() {
             var id = $(this).data('id');
             var nombre = $(this).data('nombre');
-            var notas = $(this).data('notas');
+            var correo = $(this).data('correo');
+            var telefono = $(this).data('telefono');
 
             $("#id").val(id);
             $("#nombre").val(nombre);
-            $("#notas").val(notas);
+            $("#correo").val(correo);
+            $("#telefono").val(telefono);
         });
 
         $(document).on("click", "#habilitar", function() {

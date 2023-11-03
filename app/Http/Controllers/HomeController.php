@@ -27,25 +27,10 @@ class HomeController extends Controller
 
         $data = DB::table('users')->count();
 
-        $data1 = DB::table('equipos')->count();
+        $data1 = DB::table('mensajeros')->count();
 
-        $data2 = DB::table('proveedores')->count();
-
-        $data3 = DB::table('fabricantes')->get();
-
-        return view('home', ['data' => $data, 'data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
+        return view('home', ['data' => $data, 'data1' => $data1]);
     }
-
-    
-    public function mantenimientos()
-    {
-        return view('mantenimientos');
-    }
-    public function complejidad()
-    {
-        return view('complejidad');
-    }
-
 
     public function perfil()
     {
@@ -56,11 +41,6 @@ class HomeController extends Controller
         return view('contrasena');
     }
 
-
-    public function perfil_empresarial()
-    {
-        return view('perfil_empresarial');
-    }
 }
 
 ?>
