@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Mensajeros')
+@section('title', 'Puntos de atención')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,7 @@
     <div class="col-md-6">
         <br>
             <div class="card">
-                <div class="card-header text-white bg-dark mb-3">{{ __('Registro de mensajero') }}</div>
+                <div class="card-header text-white bg-dark mb-3">{{ __('Registro de punto de atención') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -19,7 +19,7 @@
                     @endif
 
                     
-    <form action="registrar_mensajero" method="post">
+    <form action="registrar_punto" method="post">
     @csrf
     
     <div class="input-group mb-3">
@@ -27,7 +27,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text"><i class="fas fa-user"></i></span>
         </div>
-        <input type="text" class="form-control" name="nombre" placeholder="Nombre completo" autofocus required>
+        <input type="text" class="form-control" name="nombre" placeholder="Nombre" autofocus required>
     </div>
     </div>
 
@@ -49,6 +49,15 @@
     </div>
     </div>
 
+    <div class="input-group mb-3">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-home"></i></span>
+        </div>
+        <input type="text" class="form-control" name="direccion" placeholder="direccion" required>
+    </div>
+    </div>
+
     </div>
 
     <div class="card-footer">
@@ -63,15 +72,15 @@
     </div>
 
 
-    <!-- MODAL EDICIÓN DE MENSAJERO -->
-    <form action="actualizar_mensajero" method="post">
+    <!-- MODAL EDICIÓN DE PUNTO DE ATENCIÓN -->
+    <form action="actualizar_punto" method="post">
     @csrf
 
     <div class="modal fade" id="edicion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header bg-dark">
-            <h5 class="modal-title" id="estadoLabel">Edición de mensajero</h5>
+            <h5 class="modal-title" id="estadoLabel">Edición de punto de atención</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -90,7 +99,7 @@
                 </div>
 
             <div class="input-group mb-3">
-                Nombre mensajero: 
+                Nombre: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -118,6 +127,16 @@
                     <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required>
                 </div>
                 </div>
+
+                <div class="input-group mb-3">
+                    Dirección: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-home"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" required>
+                </div>
+                </div>
             </div>
 
         <div class="modal-footer">
@@ -132,15 +151,15 @@
     </div>
     </form>
 
-    <!-- MODAL HABILITACIÓN DE MENSAJERO -->
-    <form action="habilitacion_mensajero" method="post">
+    <!-- MODAL HABILITACIÓN DE PUNTO DE ATENCIÓN -->
+    <form action="habilitacion_punto" method="post">
     @csrf
 
     <div class="modal fade" id="habilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header bg-dark">
-            <h5 class="modal-title" id="estadoLabel">Estado del mensajero</h5>
+            <h5 class="modal-title" id="estadoLabel">Estado del punto de atención</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -158,7 +177,7 @@
                 </div>
 
             <div class="input-group mb-3">
-                Nombre mensajero: 
+                Nombre: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -168,7 +187,7 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    Estado mensajero: 
+                    Estado punto de atención: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-eye"></i></span>
@@ -190,15 +209,15 @@
     </div>
     </form>
 
-    <!-- MODAL INHABILITACIÓN DE MENSAJERO -->
-    <form action="inhabilitacion_mensajero" method="post">
+    <!-- MODAL INHABILITACIÓN DE PUNTO DE ATENCIÓN -->
+    <form action="inhabilitacion_punto" method="post">
     @csrf
 
     <div class="modal fade" id="inhabilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header bg-dark">
-            <h5 class="modal-title" id="estadoLabel">Estado del mensajero</h5>
+            <h5 class="modal-title" id="estadoLabel">Estado del punto de atención</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -251,7 +270,7 @@
     <div class="col-md-12">
         <br>
             <div class="card">
-                <div class="card-header text-white bg-dark mb-3">{{ __('Listado de mensajeros') }}</div>
+                <div class="card-header text-white bg-dark mb-3">{{ __('Listado de puntos de atención') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -262,7 +281,7 @@
 
         @csrf
 
-        <table class="table table-striped table-hover" id="mensajeros" style='text-align: center; vertical-align: middle;'>
+        <table class="table table-striped table-hover" id="puntos" style='text-align: center; vertical-align: middle;'>
             <thead align="center">
                 <tr>
                 <th scope="col">Id</th>
@@ -276,32 +295,32 @@
             <tbody>
             @foreach($data as $d)
                 <tr>
-                    <td>{{ $d->men_id }}</td>
-                    <td>{{ $d->men_nombre }}</td>
-                    <td class="d-none d-sm-block">{{ $d->men_correo }}</td>
+                    <td>{{ $d->pun_id }}</td>
+                    <td>{{ $d->pun_nombre }}</td>
+                    <td class="d-none d-sm-block">{{ $d->pun_correo }}</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Editar" id="editar"
-                        data-id="{{ $d->men_id }}" data-nombre="{{ $d->men_nombre }}" data-correo="{{ $d->men_correo }}" data-telefono="{{ $d->men_telefono }}">
+                        data-id="{{ $d->pun_id }}" data-nombre="{{ $d->pun_nombre }}" data-correo="{{ $d->pun_correo }}" data-telefono="{{ $d->pun_telefono }}" data-direccion="{{ $d->pun_direccion }}">
                             <span class="fas fa-edit"></span>
                         </button>
                     </td>
-                    @if ($d->men_estado === 1)
+                    @if ($d->pun_estado === 1)
                     <td>
                         <button type="button" class="btn btn-primary bg-red" data-toggle="modal" data-target="#inhabilitacion" title="Inhabilitar" id="inhabilitar"
-                        data-id3="{{ $d->men_id }}" data-nombre3="{{ $d->men_nombre }}" data-estado3="El mensajero se encuentra habilitado">
+                        data-id3="{{ $d->pun_id }}" data-nombre3="{{ $d->pun_nombre }}" data-estado3="El punto de atención se encuentra habilitado">
                             <span class="fas fa-thumbs-down"></span>
                         </button>
                     </td>
                     @else
                     <td>
                         <button type="button" class="btn btn-primary bg-green" data-toggle="modal" data-target="#habilitacion" title="Habilitar" id="habilitar"
-                        data-id2="{{ $d->men_id }}" data-nombre2="{{ $d->men_nombre }}" data-estado2="El mensajero se encuentra inhabilitado">
+                        data-id2="{{ $d->pun_id }}" data-nombre2="{{ $d->pun_nombre }}" data-estado2="El punto de atención se encuentra inhabilitado">
                             <span class="fas fa-thumbs-up"></span>
                         </button>
                     </td>
                     @endif
                    
-                    <td >{{ $d->men_fecha_registro }}</td>
+                    <td >{{ $d->pun_fecha_registro }}</td>
                 </tr>
             @endforeach
              </tbody>
@@ -318,7 +337,7 @@
 @section('js')
 
     <script>
-        $('#mensajeros').DataTable({
+        $('#puntos').DataTable({
             responsive: true,
             autoWidth: false,
 
@@ -341,11 +360,13 @@
             var nombre = $(this).data('nombre');
             var correo = $(this).data('correo');
             var telefono = $(this).data('telefono');
+            var direccion = $(this).data('direccion');
 
             $("#id").val(id);
             $("#nombre").val(nombre);
             $("#correo").val(correo);
             $("#telefono").val(telefono);
+            $("#direccion").val(direccion);
         });
 
         $(document).on("click", "#habilitar", function() {

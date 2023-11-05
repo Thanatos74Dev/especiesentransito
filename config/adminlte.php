@@ -302,6 +302,16 @@ return [
             'icon' => 'fas fa-fw fa-home',
         ],
         [
+            'text' => 'Despachos',
+            'url'  => 'despachos',
+            'icon' => 'fas fa-fw fa-truck',
+        ],
+        [
+            'text' => 'Especies',
+            'url'  => 'especies',
+            'icon' => 'fas fa-fw fa-credit-card',
+        ],
+        [
             'text' => 'Mensajeros',
             'url'  => 'mensajeros',
             'icon' => 'fas fa-fw fa-users',
@@ -310,6 +320,11 @@ return [
             'text' => 'Usuarios',
             'url'  => 'usuarios',
             'icon' => 'fas fa-fw fa-user-circle',
+        ],
+        [
+            'text' => 'Puntos de atención',
+            'url'  => 'puntos',
+            'icon' => 'fas fa-fw fa-map',
         ],
     ],
 ],

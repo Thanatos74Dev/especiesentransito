@@ -22,25 +22,24 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function home()
-    {
+
+    //MÉTODO PARA LA FUNCIONALIDAD DE REDIRECCIONAMIENTO AL HOME 01/11/2023
+    public function home(){
 
         $data = DB::table('users')->count();
-
         $data1 = DB::table('mensajeros')->count();
-
         return view('home', ['data' => $data, 'data1' => $data1]);
     }
 
-    public function perfil()
-    {
+    //MÉTODO PARA LA FUNCIONALIDAD DE REDIRECCIONAMIENTO AL PERFIL DE USUARIO 01/11/2023
+    public function perfil(){
         return view('perfil');
     }
-    public function contrasena()
-    {
+
+    //MÉTODO PARA LA FUNCIONALIDAD DE REDIRECCIONAMIENTO AL CAMBIO DE CONTRASEÑA DE USUARIO 01/11/2023
+    public function contrasena(){
         return view('contrasena');
     }
-
 }
 
 ?>

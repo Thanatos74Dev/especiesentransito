@@ -9,8 +9,7 @@ class MensajeroController extends Controller
 {
 
     //MÉTODO PARA LA FUNCIONALIDAD DE REGISTRO DE NUEVOS MENSAJEROS 01/11/2023
-    public function registrar_mensajero()
-    {
+    public function registrar_mensajero(){
         $hoy = date("Y-m-d");
 
         $datos = request();
@@ -24,14 +23,14 @@ class MensajeroController extends Controller
         return redirect('mensajeros');
     }
 
-    public function mensajeros(Request $request)
-    {
+    //MÉTODO PARA LA FUNCIONALIDAD DE LISTADO DE MENSAJEROS REGISTRADOS EN LA PLATAFORMA 01/11/2023
+    public function mensajeros(Request $request){
         $data = DB::table('mensajeros')->get();
         return view('mensajeros', ['data' => $data]);
     }
 
     //MÉTODO PARA LA FUNCIONALIDAD DE EDICIÓN DE MENSAJEROS 01/11/2023
-    public function actualizar_mensajero()    {
+    public function actualizar_mensajero(){
         $hoy = date("Y-m-d");
 
         $datos = request()->except('_token');
@@ -46,8 +45,7 @@ class MensajeroController extends Controller
     }
 
     //MÉTODO PARA LA FUNCIONALIDAD DE INHABILITACIÓN DE MENSAJEROS 01/11/2023
-    public function inhabilitacion_mensajero()
-    {
+    public function inhabilitacion_mensajero(){
         $datos = request()->except('_token');
         DB::table('mensajeros')
         ->where('men_id', '=', $datos['id3'])
@@ -59,8 +57,7 @@ class MensajeroController extends Controller
     }
 
      //MÉTODO PARA LA FUNCIONALIDAD DE HABILITACIÓN DE MENSAJEROS 01/11/2023
-     public function habilitacion_mensajero()
-     {
+     public function habilitacion_mensajero(){
         $datos = request()->except('_token');
         DB::table('mensajeros')
         ->where('men_id', '=', $datos['id2'])
@@ -71,3 +68,5 @@ class MensajeroController extends Controller
          return redirect('mensajeros');
      }
 }
+
+?>

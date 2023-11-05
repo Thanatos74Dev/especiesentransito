@@ -18,7 +18,7 @@
         @csrf
 
         {{-- Name field --}}
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 bg-dark">
             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                    value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
 
