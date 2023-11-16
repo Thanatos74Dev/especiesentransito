@@ -28,7 +28,13 @@ class HomeController extends Controller
 
         $data = DB::table('users')->count();
         $data1 = DB::table('mensajeros')->count();
-        return view('home', ['data' => $data, 'data1' => $data1]);
+        $data2 = DB::table('despachos')
+        ->where('desp_estado', '=', 1)
+        ->count();
+        $data3 = DB::table('especies')
+        ->where('esp_estado', '=', 1)
+        ->count();
+        return view('home', ['data' => $data, 'data1' => $data1, 'data2' => $data2, 'data3' => $data3]);
     }
 
     //MÉTODO PARA LA FUNCIONALIDAD DE REDIRECCIONAMIENTO AL PERFIL DE USUARIO 01/11/2023

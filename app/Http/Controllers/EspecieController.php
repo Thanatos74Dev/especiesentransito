@@ -62,6 +62,16 @@ class EspecieController extends Controller
  
          return redirect('especies');
      }
+
+    //MÉTODO PARA LA FUNCIONALIDAD DE EDICIÓN DE ESPECIES DEBIDO A UNA ASIGACIÓN DE DESPACHO 16/11/2023
+    public function asignar_especie($placa){
+
+        DB::table('especies')
+        ->where('esp_id', '=', $placa)
+        ->update([
+            'esp_estado' => 3
+        ]);
+    }
 }
 
 ?>

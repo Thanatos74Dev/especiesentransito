@@ -1,26 +1,25 @@
-@extends('adminlte::page')
+<?php $__env->startSection('title', 'Despachos'); ?>
 
-@section('title', 'Despachos')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row justify-content-center">
 
     <div class="col-md-6">
         <br>
             <div class="card">
-                <div class="card-header text-white bg-dark mb-3">{{ __('Registro de despacho') }}</div>
+                <div class="card-header text-white bg-dark mb-3"><?php echo e(__('Registro de despacho')); ?></div>
 
                 <div class="card-body">
-                    @if (session('status'))
+                    <?php if(session('status')): ?>
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            <?php echo e(session('status')); ?>
+
                         </div>
-                    @endif
+                    <?php endif; ?>
 
                     
     <form action="registrar_despacho" method="post">
-    @csrf
+    <?php echo csrf_field(); ?>
     
     <div class="col-sm-12">
         <div class="form-group">
@@ -28,9 +27,9 @@
             <div class="input-group mb-3">
             <select class="custom-select rounded-1" name="placa" required>
                     <option value="0" selected>Seleccione una especie</option>
-                @foreach($data3 as $d3)
-                    <option value="{{ $d3->esp_id }}">{{ $d3->esp_id." - ".$d3->esp_placa }}</option>
-                @endforeach
+                <?php $__currentLoopData = $data3; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d3): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($d3->esp_id); ?>"><?php echo e($d3->esp_id." - ".$d3->esp_placa); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
         </div>
@@ -42,9 +41,9 @@
             <div class="input-group mb-3">
             <select class="custom-select rounded-1" name="punto" required>
                     <option value="0" selected>Seleccione un punto de atención</option>
-                @foreach($data1 as $d1)
-                    <option value="{{ $d1->pun_id }}">{{ $d1->pun_id." - ".$d1->pun_nombre }}</option>
-                @endforeach
+                <?php $__currentLoopData = $data1; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d1): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($d1->pun_id); ?>"><?php echo e($d1->pun_id." - ".$d1->pun_nombre); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
         </div>
@@ -56,9 +55,9 @@
             <div class="input-group mb-3">
             <select class="custom-select rounded-1" name="mensajero" required>
                     <option value="0" selected>Seleccione un mensajero</option>
-                @foreach($data2 as $d2)
-                    <option value="{{ $d2->men_id }}">{{ $d2->men_id." - ".$d2->men_nombre }}</option>
-                @endforeach
+                <?php $__currentLoopData = $data2; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($d2->men_id); ?>"><?php echo e($d2->men_id." - ".$d2->men_nombre); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
         </div>
@@ -91,7 +90,7 @@
 
     <!-- MODAL EDICIÓN DE DESPACHO -->
     <form action="actualizar_despacho" method="post">
-    @csrf
+    <?php echo csrf_field(); ?>
 
     <div class="modal fade" id="edicion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -159,7 +158,8 @@
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">
             <span class="fas fa-recycle"></span>
-                {{ 'Actualizar' }}
+                <?php echo e('Actualizar'); ?>
+
             </button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
@@ -171,16 +171,17 @@
     <div class="col-md-12">
         <br>
             <div class="card">
-                <div class="card-header text-white bg-dark mb-3">{{ __('Listado de despachos') }}</div>
+                <div class="card-header text-white bg-dark mb-3"><?php echo e(__('Listado de despachos')); ?></div>
 
                 <div class="card-body">
-                    @if (session('status'))
+                    <?php if(session('status')): ?>
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                            <?php echo e(session('status')); ?>
 
-        @csrf
+                        </div>
+                    <?php endif; ?>
+
+        <?php echo csrf_field(); ?>
 
         <table class="table table-striped table-hover" id="despachos" style='text-align: center; vertical-align: middle;'>
             <thead align="center">
@@ -196,38 +197,38 @@
             </thead>
            
             <tbody>
-            @foreach($data as $d)
+            <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td>{{ $d->desp_id }}</td>
-                    <td>{{ $d->esp_placa }}</td>
-                    <td>{{ $d->pun_nombre }}</td>
-                    <td>{{ $d->men_nombre }}</td>
-                    <td>{{ $d->desp_fecha_entrega }}</td>
+                    <td><?php echo e($d->desp_id); ?></td>
+                    <td><?php echo e($d->esp_placa); ?></td>
+                    <td><?php echo e($d->pun_nombre); ?></td>
+                    <td><?php echo e($d->men_nombre); ?></td>
+                    <td><?php echo e($d->desp_fecha_entrega); ?></td>
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Editar" id="editar"
-                        data-id="{{ $d->desp_id }}" data-placa="{{ $d->esp_placa }}" data-punto="{{ $d->pun_nombre }}" data-mensajero="{{ $d->men_nombre }}" data-entrega="{{ $d->desp_fecha_entrega }}">
+                        data-id="<?php echo e($d->desp_id); ?>" data-placa="<?php echo e($d->esp_placa); ?>" data-punto="<?php echo e($d->pun_nombre); ?>" data-mensajero="<?php echo e($d->men_nombre); ?>" data-entrega="<?php echo e($d->desp_fecha_entrega); ?>">
                             <span class="fas fa-edit"></span>
                         </button>
                     </td>
-                    @if ($d->desp_estado === 1)
+                    <?php if($d->desp_estado === 1): ?>
                     <td>
                         <button type="button" class="btn btn-primary bg-red" data-toggle="modal" data-target="#inhabilitacion" title="Inhabilitar" id="inhabilitar"
-                        data-id3="{{ $d->desp_id }}" data-nombre3="{{ $d->desp_placa }}" data-estado3="El despacho se encuentra habilitado">
+                        data-id3="<?php echo e($d->desp_id); ?>" data-nombre3="<?php echo e($d->desp_placa); ?>" data-estado3="El despacho se encuentra habilitado">
                             <span class="fas fa-thumbs-down"></span>
                         </button>
                     </td>
-                    @else
+                    <?php else: ?>
                     <td>
                         <button type="button" class="btn btn-primary bg-green" data-toggle="modal" data-target="#habilitacion" title="Habilitar" id="habilitar"
-                        data-id2="{{ $d->desp_id }}" data-nombre2="{{ $d->desp_placa }}" data-estado2="El despacho se encuentra inhabilitado">
+                        data-id2="<?php echo e($d->desp_id); ?>" data-nombre2="<?php echo e($d->desp_placa); ?>" data-estado2="El despacho se encuentra inhabilitado">
                             <span class="fas fa-thumbs-up"></span>
                         </button>
                     </td>
-                    @endif
+                    <?php endif; ?>
                    
-                    <td >{{ $d->desp_fecha_registro }}</td>
+                    <td ><?php echo e($d->desp_fecha_registro); ?></td>
                 </tr>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
              </tbody>
         </table>
                     
@@ -236,10 +237,10 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 
     <script>
         $('#despachos').DataTable({
@@ -295,4 +296,5 @@
         });
 
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('adminlte::page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\especiesentransito\resources\views/despachos.blade.php ENDPATH**/ ?>

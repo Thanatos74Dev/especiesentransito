@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\EspecieController;
 
 use Illuminate\Http\Request;
 
@@ -20,12 +21,22 @@ class DespachoController extends Controller
                     'desp_estado' => 1,
                     'desp_fecha_registro' => $hoy]);
                 
+            //Objeto para instanciar controlador Especies y con esto cambiar el estado de la especie.        
+            $especie = new EspecieController();
+            $especie->asignar_especie($datos['placa']);
             return redirect('despachos');
         }
     
         //MÉTODO PARA LA FUNCIONALIDAD DE LISTADO DE DESPACHOS REGISTRADOS EN LA PLATAFORMA 08/11/2023
         public function despachos(Request $request){
-            $data = DB::table('despachos')->get();
+            //$data = DB::table('despachos')->get();
+            $data = DB::table('despachos')
+            ->join('especies', 'despachos.desp_placa', '=', 'especies.esp_id')
+            ->join('puntosatencion', 'despachos.desp_punto', '=', 'puntosatencion.pun_id')
+            ->join('mensajeros', 'despachos.desp_mensajero', '=', 'mensajeros.men_id')
+            ->select('despachos.*', 'especies.esp_placa', 'puntosatencion.pun_nombre', 'mensajeros.men_nombre')
+            ->get();
+
             $data1 = DB::table('puntosatencion')
             ->where('pun_estado', '=', 1)
             ->get();

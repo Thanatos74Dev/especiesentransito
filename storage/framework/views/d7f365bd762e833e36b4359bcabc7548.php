@@ -1,33 +1,50 @@
-@extends('adminlte::page')
+<?php $__env->startSection('title', 'Mensajeros'); ?>
 
-@section('title', 'Especies')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row justify-content-center">
 
     <div class="col-md-6">
         <br>
             <div class="card">
-                <div class="card-header text-white bg-dark mb-3">{{ __('Registro de especie') }}</div>
+                <div class="card-header text-white bg-dark mb-3"><?php echo e(__('Registro de mensajero')); ?></div>
 
                 <div class="card-body">
-                    @if (session('status'))
+                    <?php if(session('status')): ?>
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            <?php echo e(session('status')); ?>
+
                         </div>
-                    @endif
+                    <?php endif; ?>
 
                     
-    <form action="registrar_especie" method="post">
-    @csrf
+    <form action="registrar_mensajero" method="post">
+    <?php echo csrf_field(); ?>
     
     <div class="input-group mb-3">
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
         </div>
-        <input type="text" class="form-control" name="placa" placeholder="placa" autofocus required>
+        <input type="text" class="form-control" name="nombre" placeholder="Nombre completo" autofocus required>
+    </div>
+    </div>
+
+    <div class="input-group mb-3">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-at"></i></span>
+        </div>
+        <input type="email" class="form-control" name="correo" placeholder="Correo electrónico" required>
+    </div>
+    </div>
+
+    <div class="input-group mb-3">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+        </div>
+        <input type="number" class="form-control" name="telefono" placeholder="Teléfono" required>
     </div>
     </div>
 
@@ -45,15 +62,15 @@
     </div>
 
 
-    <!-- MODAL EDICIÓN DE ESPECIES -->
-    <form action="actualizar_especie" method="post">
-    @csrf
+    <!-- MODAL EDICIÓN DE MENSAJERO -->
+    <form action="actualizar_mensajero" method="post">
+    <?php echo csrf_field(); ?>
 
     <div class="modal fade" id="edicion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header bg-dark">
-            <h5 class="modal-title" id="estadoLabel">Edición de especie</h5>
+            <h5 class="modal-title" id="estadoLabel">Edición de mensajero</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -72,21 +89,41 @@
                 </div>
 
             <div class="input-group mb-3">
-                Placa: 
+                Nombre mensajero: 
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="placa" name="placa" placeholder="Nombre completo" autofocus required>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" autofocus required>
                 </div>
                 </div>
 
+                <div class="input-group mb-3">
+                    Correo electrónico: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-at"></i></span>
+                    </div>
+                    <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" required>
+                </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    Teléfono: 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    </div>
+                    <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required>
+                </div>
+                </div>
             </div>
 
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">
             <span class="fas fa-recycle"></span>
-                {{ 'Actualizar' }}
+                <?php echo e('Actualizar'); ?>
+
             </button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
@@ -95,15 +132,15 @@
     </div>
     </form>
 
-    <!-- MODAL HABILITACIÓN DE ESPECIE -->
-    <form action="habilitacion_especie" method="post">
-    @csrf
+    <!-- MODAL HABILITACIÓN DE MENSAJERO -->
+    <form action="habilitacion_mensajero" method="post">
+    <?php echo csrf_field(); ?>
 
     <div class="modal fade" id="habilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header bg-dark">
-            <h5 class="modal-title" id="estadoLabel">Estado de la especie</h5>
+            <h5 class="modal-title" id="estadoLabel">Estado del mensajero</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -121,22 +158,22 @@
                 </div>
 
             <div class="input-group mb-3">
-                Nombre: 
+                Nombre mensajero: 
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="placa2" name="placa2" placeholder="placa" autofocus required>
+                    <input type="text" class="form-control" id="nombre2" name="nombre2" placeholder="Nombre completo" autofocus required>
                 </div>
                 </div>
 
                 <div class="input-group mb-3">
-                    Estado de la especie: 
+                    Estado mensajero: 
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-eye"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="estado2" name="estado2" placeholder="Estado de la especie" required>
+                    <input type="text" class="form-control" id="estado2" name="estado2" placeholder="Estado del mensajero" required>
                 </div>
                 </div>
             </div>
@@ -144,7 +181,8 @@
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary bg-green">
             <span class="fas fa-thumbs-up"></span>
-                {{ 'Habilitar' }}
+                <?php echo e('Habilitar'); ?>
+
             </button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
@@ -153,15 +191,15 @@
     </div>
     </form>
 
-    <!-- MODAL INHABILITACIÓN DE ESPECIE -->
-    <form action="inhabilitacion_punto" method="post">
-    @csrf
+    <!-- MODAL INHABILITACIÓN DE MENSAJERO -->
+    <form action="inhabilitacion_mensajero" method="post">
+    <?php echo csrf_field(); ?>
 
     <div class="modal fade" id="inhabilitacion" tabindex="-1" role="dialog" aria-labelledby="estadoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header bg-dark">
-            <h5 class="modal-title" id="estadoLabel">Estado de la especie</h5>
+            <h5 class="modal-title" id="estadoLabel">Estado del mensajero</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -179,12 +217,12 @@
                 </div>
 
             <div class="input-group mb-3">
-                Placa: 
+                Nombre mensajero: 
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="placa3" name="placa3" placeholder="Placa" autofocus required>
+                    <input type="text" class="form-control" id="nombre3" name="nombre3" placeholder="Nombre completo" autofocus required>
                 </div>
                 </div>
 
@@ -194,7 +232,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-eye"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="estado3" name="estado3" placeholder="Estado de la specie" required>
+                    <input type="text" class="form-control" id="estado3" name="estado3" placeholder="Estado del mensajero" required>
                 </div>
                 </div>
             </div>
@@ -202,7 +240,8 @@
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary bg-red">
             <span class="fas fa-thumbs-down"></span>
-                {{ 'Inhabilitar' }}
+                <?php echo e('Inhabilitar'); ?>
+
             </button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
@@ -214,74 +253,60 @@
     <div class="col-md-12">
         <br>
             <div class="card">
-                <div class="card-header text-white bg-dark mb-3">{{ __('Listado de especies') }}</div>
+                <div class="card-header text-white bg-dark mb-3"><?php echo e(__('Listado de mensajeros')); ?></div>
 
                 <div class="card-body">
-                    @if (session('status'))
+                    <?php if(session('status')): ?>
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            <?php echo e(session('status')); ?>
+
                         </div>
-                    @endif
+                    <?php endif; ?>
 
-        @csrf
+        <?php echo csrf_field(); ?>
 
-        <table class="table table-striped table-hover" id="especies" style='text-align: center; vertical-align: middle;'>
+        <table class="table table-striped table-hover" id="mensajeros" style='text-align: center; vertical-align: middle;'>
             <thead align="center">
                 <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Placa</th>
-                <th scope="col" class="d-none d-sm-block">Estado</th>
+                <th scope="col">Nombre</th>
+                <th scope="col" class="d-none d-sm-block">Correo</th>
                 <th scope="col" colspan='2'>Acciones</th>
                 <th scope="col">Última mod</th>
                 </tr>
             </thead>
            
             <tbody>
-            @foreach($data as $d)
+            <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td>{{ $d->esp_id }}</td>
-                    <td>{{ $d->esp_placa }}</td>
-                    @if ($d->esp_estado === 1)
-                    <td class="d-none d-sm-block">Disponible</td>
-                    @elseif ($d->esp_estado === 2)
-                    <td class="d-none d-sm-block">Inhabilitada</td>
-                    @elseif ($d->esp_estado === 3)
-                    <td class="d-none d-sm-block">Asignada</td>
-                    @elseif ($d->esp_estado === 4)
-                    <td class="d-none d-sm-block">Despachada</td>
-                    @endif
+                    <td><?php echo e($d->men_id); ?></td>
+                    <td><?php echo e($d->men_nombre); ?></td>
+                    <td class="d-none d-sm-block"><?php echo e($d->men_correo); ?></td>
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicion" title="Editar" id="editar"
-                        data-id="{{ $d->esp_id }}" data-placa="{{ $d->esp_placa }}" data-estado="{{ $d->esp_estado }}">
+                        data-id="<?php echo e($d->men_id); ?>" data-nombre="<?php echo e($d->men_nombre); ?>" data-correo="<?php echo e($d->men_correo); ?>" data-telefono="<?php echo e($d->men_telefono); ?>">
                             <span class="fas fa-edit"></span>
                         </button>
                     </td>
-                    @if ($d->esp_estado === 1)
+                    <?php if($d->men_estado === 1): ?>
                     <td>
                         <button type="button" class="btn btn-primary bg-red" data-toggle="modal" data-target="#inhabilitacion" title="Inhabilitar" id="inhabilitar"
-                        data-id3="{{ $d->esp_id }}" data-placa3="{{ $d->esp_placa }}" data-estado3="La especie se encuentra habilitada">
+                        data-id3="<?php echo e($d->men_id); ?>" data-nombre3="<?php echo e($d->men_nombre); ?>" data-estado3="El mensajero se encuentra habilitado">
                             <span class="fas fa-thumbs-down"></span>
                         </button>
                     </td>
-                    @elseif ($d->esp_estado === 2)
+                    <?php else: ?>
                     <td>
-                        <button type="button" class="btn btn-primary bg-red" data-toggle="modal" data-target="#habilitacion" title="Habilitar" id="habilitar"
-                        data-id3="{{ $d->esp_id }}" data-placa3="{{ $d->esp_placa }}" data-estado3="La especie se encuentra inhabilitada">
+                        <button type="button" class="btn btn-primary bg-green" data-toggle="modal" data-target="#habilitacion" title="Habilitar" id="habilitar"
+                        data-id2="<?php echo e($d->men_id); ?>" data-nombre2="<?php echo e($d->men_nombre); ?>" data-estado2="El mensajero se encuentra inhabilitado">
                             <span class="fas fa-thumbs-up"></span>
                         </button>
                     </td>
-                    @else
-                    <td>
-                        <button type="button" class="btn btn-primary bg-gray" data-toggle="modal" data-target="#" title="Especie asignada" id="asignada"
-                        data-id4="{{ $d->esp_id }}" data-placa4="{{ $d->esp_placa }}" data-estado4="La especie se encuentra asignada">
-                            <span class="fas fa-eye"></span>
-                        </button>
-                    </td>
-                    @endif
+                    <?php endif; ?>
                    
-                    <td >{{ $d->esp_fecha_registro }}</td>
+                    <td ><?php echo e($d->men_fecha_registro); ?></td>
                 </tr>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
              </tbody>
         </table>
                     
@@ -290,13 +315,13 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 
     <script>
-        $('#especies').DataTable({
+        $('#mensajeros').DataTable({
             responsive: true,
             autoWidth: false,
 
@@ -316,43 +341,36 @@
 
         $(document).on("click", "#editar", function() {
             var id = $(this).data('id');
-            var placa = $(this).data('placa');
-            var estado = $(this).data('estado');
+            var nombre = $(this).data('nombre');
+            var correo = $(this).data('correo');
+            var telefono = $(this).data('telefono');
 
             $("#id").val(id);
-            $("#placa").val(placa);
-            $("#estado").val(estado);
+            $("#nombre").val(nombre);
+            $("#correo").val(correo);
+            $("#telefono").val(telefono);
         });
 
         $(document).on("click", "#habilitar", function() {
             var id2 = $(this).data('id2');
-            var placa2 = $(this).data('placa2');
+            var nombre2 = $(this).data('nombre2');
             var estado2 = $(this).data('estado2');
 
             $("#id2").val(id2);
-            $("#placa2").val(placa2);
+            $("#nombre2").val(nombre2);
             $("#estado2").val(estado2);
         });
 
         $(document).on("click", "#inhabilitar", function() {
             var id3 = $(this).data('id3');
-            var placa3 = $(this).data('placa3');
+            var nombre3 = $(this).data('nombre3');
             var estado3 = $(this).data('estado3');
 
             $("#id3").val(id3);
-            $("#placa3").val(placa3);
+            $("#nombre3").val(nombre3);
             $("#estado3").val(estado3);
         });
 
-        $(document).on("click", "#asignada", function() {
-            var id4 = $(this).data('id4');
-            var placa4 = $(this).data('placa4');
-            var estado4 = $(this).data('estado4');
-
-            $("#id4").val(id4);
-            $("#placa4").val(placa4);
-            $("#estado4").val(estado4);
-        });
-
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('adminlte::page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\especiesentransito\resources\views/mensajeros.blade.php ENDPATH**/ ?>
